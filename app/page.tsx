@@ -447,16 +447,13 @@ export default function Home() {
                   // ARNOLD KUMAR M
                 </div>
                 <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 500, color: COLORS.tertiary, letterSpacing: ".04em" }}>
-                  Senior AI/ML Engineer
+                  <TextScramble text="Senior AI/ML Engineer" autoScramble={true} />
                 </div>
               </div>
 
               {/* Headline */}
               <h1 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1, color: "#fff", marginBottom: 28, fontSize: "clamp(34px, 5.5vw, 60px)", textShadow: "0 0 40px rgba(168,85,247,.15)" }}>
-                <TextScramble
-                  text="Building Enterprise AI Systems That Scale."
-                  finalRender={<>Building Enterprise{" "}<span className="gradient-text">AI Systems</span> That Scale.</>}
-                />
+                Building Enterprise <span className="gradient-text">AI Systems</span> That Scale.
               </h1>
 
               {/* Subheadline */}
