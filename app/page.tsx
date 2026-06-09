@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { SplineScene } from "@/components/ui/splite";
+import { Spotlight } from "@/components/ui/spotlight";
 
 const IconArrowRight = () => (
   <svg
@@ -119,72 +121,17 @@ export default function Home() {
     };
   }, []);
 
-  const navLinks = [
-    { label: "Portfolio", href: "#" },
-    { label: "Insights", href: "#" },
-    { label: "Resume", href: "/resume.pdf" },
-    { label: "Experience", href: "#" },
-    { label: "Contact", href: "#" },
-  ];
-
-  const expertise = [
-    {
-      icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#5de6ff"
-          strokeWidth="2"
-        >
-          <rect x="2" y="7" width="20" height="14" rx="2" />
-          <path d="M16 3H8M12 3v4" />
-          <path d="M8 12h8M8 16h4" />
-        </svg>
-      ),
-      tag: "MLOps Infrastructure",
-      desc: "Automated CI/CD for machine learning, feature stores, and robust monitoring for drift detection in high-load environments.",
-      badges: ["Kubernetes", "MLFlow", "Docker"],
-    },
-    {
-      icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#4edea3"
-          strokeWidth="2"
-        >
-          <circle cx="12" cy="12" r="3" />
-          <path d="M12 2v4M12 18v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M2 12h4M18 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-        </svg>
-      ),
-      tag: "LLM & Generative AI",
-      desc: "RAG pipelines, fine-tuning with LoRA/QLoRA, prompt engineering, and production deployment of large language models.",
-      badges: ["LangChain", "OpenAI", "Transformers"],
-    },
-    {
-      icon: (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="#d4e4fa"
-          strokeWidth="2"
-        >
-          <circle cx="12" cy="5" r="2" />
-          <circle cx="5" cy="19" r="2" />
-          <circle cx="19" cy="19" r="2" />
-          <path d="M12 7v4M12 11l-5 6M12 11l5 6" />
-        </svg>
-      ),
-      tag: "Cloud & Data Engineering",
-      desc: "Scalable data pipelines and ML infrastructure across AWS, Azure, and GCP with real-time streaming and analytics.",
-      badges: ["AWS", "Azure", "Spark"],
-    },
+  const navLinks: {
+    label: string;
+    href: string;
+    target?: string;
+    download?: boolean;
+  }[] = [
+    { label: "Portfolio", href: "#portfolio" },
+    { label: "AI Systems", href: "#ai-systems" },
+    { label: "Resume", href: "/resume.pdf", target: "_blank", download: true },
+    { label: "Experience", href: "#experience" },
+    { label: "Contact", href: "#contact" },
   ];
 
   const projects = [
@@ -489,6 +436,25 @@ export default function Home() {
         }
         @keyframes spin-slow { to { transform: rotate(360deg); } }
         .spin-slow { animation: spin-slow 20s linear infinite; }
+        @keyframes pulse-dot { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.5; transform:scale(1.4); } }
+        .pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+        .gradient-text {
+          background: linear-gradient(90deg, #4edea3 0%, #5de6ff 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .profile-card-glow {
+          box-shadow: 0 0 0 1px rgba(78,222,163,.15), 0 8px 32px rgba(78,222,163,.12), 0 32px 64px rgba(5,20,36,.8);
+        }
+        .project-card-hover {
+          transition: border-color .3s, box-shadow .3s, transform .3s;
+        }
+        .project-card-hover:hover {
+          border-color: rgba(93,230,255,.25) !important;
+          box-shadow: 0 0 32px rgba(93,230,255,.06), 0 16px 48px rgba(5,20,36,.6);
+          transform: translateY(-2px);
+        }
         .mobile-nav {
           display: none;
           flex-direction: column;
@@ -551,6 +517,8 @@ export default function Home() {
               <Link
                 key={l.label}
                 href={l.href}
+                target={l.target}
+                download={l.download}
                 style={{
                   fontFamily: "'Inter',sans-serif",
                   fontSize: 16,
@@ -629,6 +597,8 @@ export default function Home() {
             <Link
               key={l.label}
               href={l.href}
+              target={l.target}
+              download={l.download}
               onClick={() => setMenuOpen(false)}
               style={{
                 fontFamily: "'JetBrains Mono',monospace",
@@ -712,23 +682,33 @@ export default function Home() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: 8,
-                    padding: "4px 12px",
-                    background: COLORS.surfaceContainerHigh,
-                    border: "1px solid rgba(148,163,184,.15)",
+                    padding: "6px 14px 6px 10px",
+                    background: "rgba(78,222,163,.06)",
+                    border: "1px solid rgba(78,222,163,.2)",
                     borderRadius: 99,
-                    marginBottom: 24,
+                    marginBottom: 28,
                   }}
                 >
-                  <IconVerified />
+                  <span
+                    className="pulse-dot"
+                    style={{
+                      display: "inline-block",
+                      width: 7,
+                      height: 7,
+                      borderRadius: "50%",
+                      background: COLORS.tertiary,
+                      flexShrink: 0,
+                    }}
+                  />
                   <span
                     style={{
                       fontFamily: "'JetBrains Mono',monospace",
-                      fontSize: 12,
-                      letterSpacing: ".05em",
-                      color: COLORS.onSurfaceVariant,
+                      fontSize: 11,
+                      letterSpacing: ".08em",
+                      color: COLORS.tertiary,
                     }}
                   >
-                    SENIOR AI SYSTEMS ARCHITECT
+                    SENIOR AI/ML Engineer
                   </span>
                 </div>
 
@@ -743,9 +723,8 @@ export default function Home() {
                     fontSize: "clamp(36px, 6vw, 64px)",
                   }}
                 >
-                  Architecting Scalable{" "}
-                  <span style={{ color: COLORS.tertiary }}>AI Systems</span> for
-                  Global Impact.
+                  Building Enterprise{" "}
+                  <span className="gradient-text">AI Systems</span> That Scale.
                 </h1>
 
                 <p
@@ -758,10 +737,10 @@ export default function Home() {
                     marginBottom: 40,
                   }}
                 >
-                  8+ years of expertise bridging the gap between cutting-edge
-                  research and production-grade deployments. Specializing in
-                  high-throughput MLOps pipelines, generative AI, and
-                  cloud-native data engineering.
+                  Senior AI/ML Engineer with 8+ years of experience designing
+                  machine learning platforms, RAG applications, and agentic AI
+                  systems across network infrastructure, healthcare, and
+                  financial services.
                 </p>
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
@@ -815,7 +794,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Hero right – profile + spinning ring */}
+              {/* Hero right – AI ID Card portrait */}
               <div
                 className="hidden md:flex"
                 style={{
@@ -823,114 +802,321 @@ export default function Home() {
                   position: "relative",
                   justifyContent: "center",
                   alignItems: "center",
-                  height: 360,
+                  height: 500,
                 }}
               >
+                {/* Ambient glow backdrop */}
                 <div
-                  className="spin-slow"
                   style={{
                     position: "absolute",
-                    width: 320,
-                    height: 320,
+                    width: 340,
+                    height: 340,
+                    background:
+                      "radial-gradient(circle, rgba(78,222,163,.1) 0%, transparent 70%)",
                     borderRadius: "50%",
-                    border: "2px dashed rgba(148,163,184,.2)",
+                    filter: "blur(48px)",
+                    zIndex: 0,
                   }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: 14,
-                      height: 14,
-                      background: COLORS.tertiary,
-                      borderRadius: "50%",
-                      top: 0,
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      width: 10,
-                      height: 10,
-                      background: COLORS.secondary,
-                      borderRadius: "50%",
-                      bottom: "25%",
-                      right: 0,
-                    }}
-                  />
-                </div>
+                />
+
+                {/* ID Card frame */}
                 <div
-                  className="glass-panel"
                   style={{
-                    borderRadius: 16,
-                    padding: "24px 28px",
-                    textAlign: "center",
-                    transform: "rotate(3deg)",
                     position: "relative",
+                    width: 270,
+                    height: 400,
                     zIndex: 1,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: 12,
-                    minWidth: 180,
                   }}
                 >
+                  {/* Corner brackets */}
                   <div
                     style={{
-                      width: 80,
-                      height: 80,
-                      borderRadius: "50%",
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: 22,
+                      height: 22,
+                      borderTop: `2px solid ${COLORS.tertiary}`,
+                      borderLeft: `2px solid ${COLORS.tertiary}`,
+                      zIndex: 4,
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      width: 22,
+                      height: 22,
+                      borderTop: `2px solid ${COLORS.tertiary}`,
+                      borderRight: `2px solid ${COLORS.tertiary}`,
+                      zIndex: 4,
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: 22,
+                      height: 22,
+                      borderBottom: `2px solid ${COLORS.tertiary}`,
+                      borderLeft: `2px solid ${COLORS.tertiary}`,
+                      zIndex: 4,
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      right: 0,
+                      width: 22,
+                      height: 22,
+                      borderBottom: `2px solid ${COLORS.tertiary}`,
+                      borderRight: `2px solid ${COLORS.tertiary}`,
+                      zIndex: 4,
+                    }}
+                  />
+
+                  {/* Thin outer border */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      border: "1px solid rgba(78,222,163,.15)",
+                      borderRadius: 2,
+                      zIndex: 3,
+                      pointerEvents: "none",
+                    }}
+                  />
+
+                  {/* Image + overlays */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      borderRadius: 2,
                       overflow: "hidden",
-                      border: `2px solid ${COLORS.tertiary}`,
+                      background: "#0a1929",
                     }}
                   >
                     <Image
                       src="/profile.jpeg"
                       alt="Arnold Kumar"
-                      width={80}
-                      height={80}
+                      fill
                       style={{
                         objectFit: "cover",
-                        width: "100%",
-                        height: "100%",
+                        objectPosition: "top center",
+                      }}
+                      priority
+                    />
+
+                    {/* Bottom gradient fade */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: "55%",
+                        background:
+                          "linear-gradient(to top, rgba(5,20,36,1) 0%, rgba(5,20,36,.75) 50%, transparent 100%)",
+                        zIndex: 1,
                       }}
                     />
-                  </div>
-                  <div>
+
+                    {/* Subtle scanline texture */}
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        color: COLORS.tertiary,
-                        fontSize: 22,
-                        fontWeight: 700,
-                        lineHeight: 1.2,
+                        position: "absolute",
+                        inset: 0,
+                        backgroundImage:
+                          "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.04) 3px, rgba(0,0,0,.04) 4px)",
+                        zIndex: 2,
+                        pointerEvents: "none",
                       }}
-                    >
-                      AI / ML
-                    </div>
+                    />
+
+                    {/* Top scan info */}
                     <div
                       style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 10,
-                        letterSpacing: ".05em",
-                        color: COLORS.onSurfaceVariant,
-                        marginTop: 4,
+                        position: "absolute",
+                        top: 10,
+                        left: 10,
+                        right: 10,
+                        zIndex: 3,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 3,
                       }}
                     >
-                      SYSTEMS ARCHITECT
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono',monospace",
+                          fontSize: 9,
+                          letterSpacing: ".1em",
+                          color: COLORS.tertiary,
+                          textShadow: "0 0 10px rgba(78,222,163,.6)",
+                        }}
+                      >
+                        SCAN_ID: ARNOLD
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono',monospace",
+                          fontSize: 8,
+                          letterSpacing: ".08em",
+                          color: "rgba(212,228,250,.45)",
+                        }}
+                      >
+                        CLEARANCE: LVL-5 / ACTIVE
+                      </span>
+                    </div>
+
+                    {/* Bottom overlay text */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: 12,
+                        left: 12,
+                        right: 12,
+                        zIndex: 3,
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontFamily: "'JetBrains Mono',monospace",
+                          fontSize: 8,
+                          letterSpacing: ".1em",
+                          color: "rgba(212,228,250,.4)",
+                          marginBottom: 3,
+                        }}
+                      >
+                        ROLE
+                      </div>
+                      <div
+                        style={{
+                          fontFamily: "'JetBrains Mono',monospace",
+                          fontSize: 10,
+                          letterSpacing: ".06em",
+                          color: COLORS.secondary,
+                          fontWeight: 500,
+                          marginBottom: 10,
+                        }}
+                      >
+                        SENIOR_AI_ML_ENGINEER
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 6,
+                        }}
+                      >
+                        <span
+                          className="pulse-dot"
+                          style={{
+                            display: "inline-block",
+                            width: 6,
+                            height: 6,
+                            borderRadius: "50%",
+                            background: COLORS.tertiary,
+                            boxShadow: `0 0 6px ${COLORS.tertiary}`,
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span
+                          style={{
+                            fontFamily: "'JetBrains Mono',monospace",
+                            fontSize: 9,
+                            letterSpacing: ".1em",
+                            color: COLORS.tertiary,
+                          }}
+                        >
+                          STATUS: Building GenAI @ Forward Networks
+                        </span>
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                {/* Floating status badge – overlapping bottom-right of card */}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 36,
+                    right: 0,
+                    background: "rgba(12,22,40,.97)",
+                    border: "1px solid rgba(93,230,255,.2)",
+                    borderRadius: 6,
+                    padding: "10px 14px",
+                    zIndex: 5,
+                    backdropFilter: "blur(16px)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 5,
+                    minWidth: 138,
+                    boxShadow: "0 8px 24px rgba(0,0,0,.5)",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "'JetBrains Mono',monospace",
+                      fontSize: 8,
+                      letterSpacing: ".1em",
+                      color: "rgba(198,198,205,.4)",
+                      marginBottom: 2,
+                      borderBottom: "1px solid rgba(93,230,255,.08)",
+                      paddingBottom: 4,
+                    }}
+                  >
+                    CURRENT FOCUS
+                  </div>
+                  {[
+                    { label: "RAG", color: COLORS.tertiary },
+                    { label: "Agentic AI", color: COLORS.secondary },
+                    { label: "MLOps", color: COLORS.onSurface },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      style={{ display: "flex", alignItems: "center", gap: 7 }}
+                    >
+                      <div
+                        style={{
+                          width: 4,
+                          height: 4,
+                          borderRadius: "50%",
+                          background: item.color,
+                          boxShadow: `0 0 4px ${item.color}`,
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span
+                        style={{
+                          fontFamily: "'JetBrains Mono',monospace",
+                          fontSize: 9,
+                          color: item.color,
+                          letterSpacing: ".04em",
+                        }}
+                      >
+                        {item.label}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CORE EXPERTISE */}
-        <section style={{ padding: "120px 0", background: "rgba(1,15,31,.5)" }}>
+        {/* AI SYSTEMS */}
+        <section
+          id="ai-systems"
+          style={{ padding: "120px 0", position: "relative" }}
+        >
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
             <div
+              data-reveal
               style={{
                 display: "flex",
                 flexWrap: "wrap",
@@ -951,7 +1137,7 @@ export default function Home() {
                     marginBottom: 12,
                   }}
                 >
-                  Core Expertise
+                  AI Systems in Motion
                 </h2>
                 <p
                   style={{
@@ -960,9 +1146,9 @@ export default function Home() {
                     lineHeight: 1.6,
                   }}
                 >
-                  Systemic solutions for complex intelligence challenges, from
-                  generative AI pipelines to high-availability cloud
-                  deployments.
+                  Explore the intelligence architecture powering next-generation
+                  enterprise systems — from real-time ML pipelines to autonomous
+                  agentic workflows.
                 </p>
               </div>
               <span
@@ -973,89 +1159,152 @@ export default function Home() {
                   color: COLORS.tertiary,
                 }}
               >
-                / DOMAIN_MASTERY
+                / AI_SYSTEMS_SHOWCASE
               </span>
             </div>
 
             <div
+              data-reveal
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-                gap: 32,
+                position: "relative",
+                borderRadius: 12,
+                overflow: "hidden",
+                border: "1px solid rgba(78,222,163,.15)",
+                background: "rgba(0,0,0,.96)",
+                boxShadow:
+                  "0 0 80px rgba(78,222,163,.04), 0 32px 64px rgba(5,20,36,.8)",
               }}
             >
-              {expertise.map((e, i) => (
+              <Spotlight
+                className="-top-40 left-0 md:left-60 md:-top-20"
+                fill="#4edea3"
+              />
+
+              <div
+                style={{ display: "flex" }}
+                className="flex-col md:flex-row md:h-[500px]"
+              >
+                {/* Left – text */}
                 <div
-                  key={i}
-                  data-reveal
-                  className="metric-card glass-panel"
                   style={{
-                    padding: 32,
-                    borderRadius: 8,
-                    border: "1px solid rgba(148,163,184,.1)",
-                    transitionDelay: `${i * 100}ms`,
+                    flex: 1,
+                    padding: "48px",
+                    position: "relative",
+                    zIndex: 10,
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
                   }}
                 >
                   <div
                     style={{
-                      width: 48,
-                      height: 48,
-                      borderRadius: 8,
-                      background: "rgba(93,230,255,.08)",
-                      display: "flex",
+                      display: "inline-flex",
                       alignItems: "center",
-                      justifyContent: "center",
+                      gap: 8,
+                      padding: "4px 12px 4px 10px",
+                      background: "rgba(78,222,163,.06)",
+                      border: "1px solid rgba(78,222,163,.2)",
+                      borderRadius: 99,
                       marginBottom: 24,
+                      width: "fit-content",
                     }}
                   >
-                    {e.icon}
+                    <span
+                      className="pulse-dot"
+                      style={{
+                        display: "inline-block",
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: COLORS.tertiary,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 10,
+                        letterSpacing: ".1em",
+                        color: COLORS.tertiary,
+                      }}
+                    >
+                      INTERACTIVE_3D
+                    </span>
                   </div>
+
                   <h3
+                    className="gradient-text"
                     style={{
                       fontFamily: "'Inter',sans-serif",
-                      fontSize: 20,
-                      fontWeight: 600,
-                      color: COLORS.onSurface,
-                      marginBottom: 12,
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.15,
+                      marginBottom: 20,
+                      fontSize: "clamp(28px, 4vw, 44px)",
                     }}
                   >
-                    {e.tag}
+                    Enterprise AI
+                    <br />
+                    Architecture
                   </h3>
+
                   <p
                     style={{
+                      fontFamily: "'Inter',sans-serif",
+                      fontSize: 16,
+                      lineHeight: 1.7,
                       color: COLORS.onSurfaceVariant,
-                      fontSize: 15,
-                      lineHeight: 1.6,
-                      marginBottom: 20,
+                      maxWidth: 420,
+                      marginBottom: 32,
                     }}
                   >
-                    {e.desc}
+                    From agentic RAG pipelines to real-time ML inference at
+                    scale — building the intelligence layer that powers
+                    enterprise decision-making.
                   </p>
+
                   <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                    {e.badges.map((b) => (
+                    {[
+                      "RAG Pipelines",
+                      "Agentic AI",
+                      "MLOps",
+                      "LLM Fine-tuning",
+                    ].map((badge) => (
                       <span
-                        key={b}
+                        key={badge}
                         style={{
                           fontFamily: "'JetBrains Mono',monospace",
                           fontSize: 11,
-                          padding: "3px 10px",
+                          padding: "4px 12px",
                           background: COLORS.surfaceVariant,
                           borderRadius: 3,
                           color: COLORS.onSurfaceVariant,
+                          border: "1px solid rgba(93,230,255,.1)",
                         }}
                       >
-                        {b}
+                        {badge}
                       </span>
                     ))}
                   </div>
                 </div>
-              ))}
+
+                {/* Right – Spline scene */}
+                <div
+                  className="min-h-[300px] md:min-h-0"
+                  style={{ flex: 1, position: "relative" }}
+                >
+                  <SplineScene
+                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                    className="absolute inset-0 w-full h-full"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* CASE STUDIES */}
-        <section style={{ padding: "120px 0" }}>
+        <section id="portfolio" style={{ padding: "120px 0" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
             <div style={{ textAlign: "center", marginBottom: 80 }}>
               <h2
@@ -1097,6 +1346,7 @@ export default function Home() {
                   >
                     {/* Visual – alternates sides on desktop */}
                     <div
+                      className="project-card-hover"
                       style={{
                         order: isEven ? 1 : 2,
                         borderRadius: 12,
@@ -1189,15 +1439,42 @@ export default function Home() {
                         href="https://github.com/arnold655"
                         target="_blank"
                         style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: 8,
                           fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 13,
-                          letterSpacing: ".05em",
+                          fontSize: 12,
+                          letterSpacing: ".06em",
                           color: COLORS.secondary,
                           textDecoration: "none",
+                          padding: "8px 18px",
+                          border: "1px solid rgba(93,230,255,.25)",
+                          borderRadius: 4,
+                          background: "rgba(93,230,255,.04)",
+                          transition: "background .2s, border-color .2s",
                         }}
-                        className="underline-expand"
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background =
+                            "rgba(93,230,255,.10)";
+                          e.currentTarget.style.borderColor =
+                            "rgba(93,230,255,.5)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background =
+                            "rgba(93,230,255,.04)";
+                          e.currentTarget.style.borderColor =
+                            "rgba(93,230,255,.25)";
+                        }}
                       >
-                        GITHUB REPO
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+                        </svg>
+                        VIEW ON GITHUB
                       </Link>
                     </div>
                   </div>
@@ -1209,6 +1486,7 @@ export default function Home() {
 
         {/* STATS */}
         <section
+          id="experience"
           style={{
             padding: "96px 0",
             borderTop: "1px solid rgba(69,70,77,.2)",
@@ -1228,15 +1506,21 @@ export default function Home() {
                 <div
                   key={i}
                   data-reveal
-                  style={{ transitionDelay: `${i * 80}ms` }}
+                  style={{
+                    transitionDelay: `${i * 80}ms`,
+                    padding: "24px 0",
+                    borderTop: `2px solid ${i % 2 === 0 ? COLORS.tertiary : COLORS.secondary}`,
+                  }}
                 >
                   <div
                     style={{
                       fontFamily: "'Inter',sans-serif",
-                      fontSize: 40,
+                      fontSize: 48,
                       fontWeight: 700,
+                      letterSpacing: "-0.02em",
                       color: COLORS.onSurface,
                       marginBottom: 8,
+                      lineHeight: 1,
                     }}
                   >
                     {s.value}
@@ -1244,9 +1528,9 @@ export default function Home() {
                   <div
                     style={{
                       fontFamily: "'JetBrains Mono',monospace",
-                      fontSize: 11,
-                      letterSpacing: ".05em",
-                      color: COLORS.tertiary,
+                      fontSize: 10,
+                      letterSpacing: ".08em",
+                      color: COLORS.onSurfaceVariant,
                     }}
                   >
                     {s.label}
@@ -1259,6 +1543,7 @@ export default function Home() {
 
         {/* CTA */}
         <section
+          id="contact"
           style={{
             padding: "120px 0",
             position: "relative",
