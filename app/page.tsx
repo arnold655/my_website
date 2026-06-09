@@ -3,43 +3,36 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { SplineScene } from "@/components/ui/splite";
-import { Spotlight } from "@/components/ui/spotlight";
 import { TextScramble } from "@/components/ui/text-scramble";
 
 const IconArrowRight = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="5" y1="12" x2="19" y2="12" />
-    <polyline points="12 5 19 12 12 19" />
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
   </svg>
 );
-const IconTerminal = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="4 17 10 11 4 5" />
-    <line x1="12" y1="19" x2="20" y2="19" />
+const IconMail = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
   </svg>
 );
-const IconVerified = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="#4edea3" stroke="none">
-    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+const IconPhone = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+  </svg>
+);
+const IconLinkedIn = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" /><circle cx="4" cy="4" r="2" />
+  </svg>
+);
+const IconGitHub = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
+  </svg>
+);
+const IconDownload = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
   </svg>
 );
 
@@ -87,10 +80,7 @@ export default function Home() {
     const dot = document.getElementById("cursor-dot");
     const ring = document.getElementById("cursor-ring");
     if (!dot || !ring) return;
-    let mouseX = 0,
-      mouseY = 0,
-      ringX = 0,
-      ringY = 0;
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
     let rafId: number;
     const onMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -105,16 +95,10 @@ export default function Home() {
     };
     document.addEventListener("mousemove", onMove);
     loop();
-    const interactives = document.querySelectorAll(
-      "a,button,[data-interactive]",
-    );
+    const interactives = document.querySelectorAll("a,button,[data-interactive]");
     interactives.forEach((el) => {
-      el.addEventListener("mouseenter", () =>
-        document.body.classList.add("cursor-active"),
-      );
-      el.addEventListener("mouseleave", () =>
-        document.body.classList.remove("cursor-active"),
-      );
+      el.addEventListener("mouseenter", () => document.body.classList.add("cursor-active"));
+      el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-active"));
     });
     return () => {
       document.removeEventListener("mousemove", onMove);
@@ -122,16 +106,12 @@ export default function Home() {
     };
   }, []);
 
-  const navLinks: {
-    label: string;
-    href: string;
-    target?: string;
-    download?: boolean;
-  }[] = [
-    { label: "Portfolio", href: "#portfolio" },
-    { label: "AI Systems", href: "#ai-systems" },
-    { label: "Resume", href: "/resume.pdf", target: "_blank", download: true },
+  const navLinks: { label: string; href: string; target?: string; download?: boolean }[] = [
+    { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Certifications", href: "#certifications" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -140,229 +120,109 @@ export default function Home() {
       tag: "NETWORK INTELLIGENCE",
       title: "Network Operations RAG Agent",
       accentColor: COLORS.tertiary,
-      desc: "Built an agentic RAG system that ingests network telemetry and operations runbooks, enabling natural-language querying of infrastructure state, automated root-cause analysis, and on-call triage at scale.",
-      badges: ["LangChain", "RAG", "Vector DB", "Python"],
+      problem: "Network ops teams drowning in telemetry data with no fast way to query infrastructure state or diagnose incidents.",
+      solution: "Agentic RAG system ingesting network telemetry and runbooks, enabling natural-language querying, automated root-cause analysis, and on-call triage at scale.",
+      impact: "Reduced mean-time-to-resolution for network incidents and eliminated manual runbook lookups during on-call rotations.",
+      badges: ["LangChain", "LangGraph", "RAG", "Vector DB", "Python", "FastAPI"],
       svgContent: (
         <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          {/* Central hub */}
-          <circle
-            cx="70"
-            cy="50"
-            r="10"
-            fill="rgba(78,222,163,.15)"
-            stroke="#4edea3"
-            strokeWidth="1.5"
-          />
-          <text
-            x="70"
-            y="54"
-            textAnchor="middle"
-            fontSize="8"
-            fill="#4edea3"
-            fontFamily="monospace"
-          >
-            RAG
-          </text>
-          {/* Satellite nodes */}
-          {[
-            { cx: 20, cy: 20 },
-            { cx: 120, cy: 20 },
-            { cx: 15, cy: 70 },
-            { cx: 125, cy: 70 },
-            { cx: 70, cy: 90 },
-          ].map((n, i) => (
+          <circle cx="70" cy="50" r="10" fill="rgba(78,222,163,.15)" stroke="#4edea3" strokeWidth="1.5" />
+          <text x="70" y="54" textAnchor="middle" fontSize="8" fill="#4edea3" fontFamily="monospace">RAG</text>
+          {[{ cx: 20, cy: 20 }, { cx: 120, cy: 20 }, { cx: 15, cy: 70 }, { cx: 125, cy: 70 }, { cx: 70, cy: 90 }].map((n, i) => (
             <g key={i}>
-              <line
-                x1="70"
-                y1="50"
-                x2={n.cx}
-                y2={n.cy}
-                stroke="#4edea3"
-                strokeWidth="1"
-                opacity=".3"
-                strokeDasharray="3 3"
-              />
-              <circle
-                cx={n.cx}
-                cy={n.cy}
-                r="5"
-                fill="rgba(78,222,163,.2)"
-                stroke="#4edea3"
-                strokeWidth="1"
-                opacity=".7"
-              />
+              <line x1="70" y1="50" x2={n.cx} y2={n.cy} stroke="#4edea3" strokeWidth="1" opacity=".3" strokeDasharray="3 3" />
+              <circle cx={n.cx} cy={n.cy} r="5" fill="rgba(78,222,163,.2)" stroke="#4edea3" strokeWidth="1" opacity=".7" />
             </g>
           ))}
-          {/* Pulse ring */}
-          <circle
-            cx="70"
-            cy="50"
-            r="18"
-            stroke="#4edea3"
-            strokeWidth="0.5"
-            opacity=".3"
-          />
-          <circle
-            cx="70"
-            cy="50"
-            r="26"
-            stroke="#4edea3"
-            strokeWidth="0.5"
-            opacity=".15"
-          />
+          <circle cx="70" cy="50" r="18" stroke="#4edea3" strokeWidth="0.5" opacity=".3" />
+          <circle cx="70" cy="50" r="26" stroke="#4edea3" strokeWidth="0.5" opacity=".15" />
         </svg>
       ),
-      bgGradient:
-        "linear-gradient(135deg, #0d1c2d 0%, #001c10 60%, #051424 100%)",
+      bgGradient: "linear-gradient(135deg, #0d1c2d 0%, #001c10 60%, #051424 100%)",
     },
     {
       tag: "HEALTHCARE AI",
       title: "Healthcare Ticket Triage & Fraud Analytics Platform",
       accentColor: COLORS.secondary,
-      desc: "Designed an end-to-end platform combining NLP-based ticket classification and ML-driven fraud detection for healthcare operations, reducing manual review time and surfacing anomalous billing patterns in real time.",
-      badges: ["NLP", "XGBoost", "Spark", "Azure"],
+      problem: "High-volume support tickets required manual review, and billing fraud patterns were surfacing too late to act on.",
+      solution: "End-to-end platform combining NLP-based ticket classification and ML-driven fraud detection for real-time anomaly detection in healthcare operations.",
+      impact: "Reduced manual review time for support tickets and surfaced anomalous billing patterns in real time, improving operational throughput.",
+      badges: ["NLP", "XGBoost", "Apache Spark", "Azure", "Python", "scikit-learn"],
       svgContent: (
         <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          {/* Ticket stack */}
-          <rect
-            x="25"
-            y="30"
-            width="55"
-            height="38"
-            rx="4"
-            fill="rgba(93,230,255,.06)"
-            stroke="#5de6ff"
-            strokeWidth="1"
-            opacity=".5"
-          />
-          <rect
-            x="30"
-            y="25"
-            width="55"
-            height="38"
-            rx="4"
-            fill="rgba(93,230,255,.08)"
-            stroke="#5de6ff"
-            strokeWidth="1"
-            opacity=".6"
-          />
-          <rect
-            x="35"
-            y="20"
-            width="55"
-            height="38"
-            rx="4"
-            fill="rgba(93,230,255,.1)"
-            stroke="#5de6ff"
-            strokeWidth="1.5"
-            opacity=".8"
-          />
-          {/* Lines inside top ticket */}
+          <rect x="25" y="30" width="55" height="38" rx="4" fill="rgba(93,230,255,.06)" stroke="#5de6ff" strokeWidth="1" opacity=".5" />
+          <rect x="30" y="25" width="55" height="38" rx="4" fill="rgba(93,230,255,.08)" stroke="#5de6ff" strokeWidth="1" opacity=".6" />
+          <rect x="35" y="20" width="55" height="38" rx="4" fill="rgba(93,230,255,.1)" stroke="#5de6ff" strokeWidth="1.5" opacity=".8" />
           {[0, 1, 2].map((i) => (
-            <line
-              key={i}
-              x1="42"
-              y1={28 + i * 7}
-              x2={72 - i * 6}
-              y2={28 + i * 7}
-              stroke="#5de6ff"
-              strokeWidth="1.2"
-              opacity=".5"
-            />
+            <line key={i} x1="42" y1={28 + i * 7} x2={72 - i * 6} y2={28 + i * 7} stroke="#5de6ff" strokeWidth="1.2" opacity=".5" />
           ))}
-          {/* Fraud shield */}
-          <path
-            d="M105 22 L118 28 L118 42 C118 50 105 55 105 55 C105 55 92 50 92 42 L92 28 Z"
-            fill="rgba(78,222,163,.1)"
-            stroke="#4edea3"
-            strokeWidth="1.2"
-            opacity=".8"
-          />
-          <text
-            x="105"
-            y="42"
-            textAnchor="middle"
-            fontSize="9"
-            fill="#4edea3"
-            fontFamily="monospace"
-          >
-            ✓
-          </text>
+          <path d="M105 22 L118 28 L118 42 C118 50 105 55 105 55 C105 55 92 50 92 42 L92 28 Z" fill="rgba(78,222,163,.1)" stroke="#4edea3" strokeWidth="1.2" opacity=".8" />
+          <text x="105" y="42" textAnchor="middle" fontSize="9" fill="#4edea3" fontFamily="monospace">✓</text>
         </svg>
       ),
-      bgGradient:
-        "linear-gradient(135deg, #0d1c2d 0%, #00121e 60%, #051424 100%)",
+      bgGradient: "linear-gradient(135deg, #0d1c2d 0%, #00121e 60%, #051424 100%)",
     },
     {
       tag: "FINTECH ML",
       title: "Real-Time Credit Risk Scoring Engine",
       accentColor: COLORS.tertiary,
-      desc: "Engineered a low-latency credit risk pipeline processing live transaction streams, featuring automated feature engineering, model retraining triggers, and explainability outputs for regulatory compliance.",
-      badges: ["Kafka", "MLflow", "Python", "AWS"],
+      problem: "Legacy batch credit scoring was too slow for real-time lending decisions and lacked explainability for regulatory requirements.",
+      solution: "Low-latency credit risk pipeline processing live transaction streams with automated feature engineering, model retraining triggers, and explainability outputs.",
+      impact: "Enabled real-time lending decisions with regulatory-compliant model explanations and automated retraining on data drift.",
+      badges: ["Kafka", "MLflow", "Python", "AWS", "XGBoost", "SHAP"],
       svgContent: (
         <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          {/* Chart bars */}
-          {[
-            { x: 18, h: 30, o: 0.4 },
-            { x: 34, h: 45, o: 0.5 },
-            { x: 50, h: 35, o: 0.55 },
-            { x: 66, h: 55, o: 0.65 },
-            { x: 82, h: 42, o: 0.7 },
-            { x: 98, h: 62, o: 0.85 },
-            { x: 114, h: 50, o: 1 },
-          ].map((b, i) => (
-            <rect
-              key={i}
-              x={b.x}
-              y={80 - b.h}
-              width="12"
-              height={b.h}
-              rx="2"
-              fill={`rgba(78,222,163,${b.o * 0.3})`}
-              stroke="#4edea3"
-              strokeWidth="1"
-              opacity={b.o}
-            />
+          {[{ x: 18, h: 30, o: 0.4 }, { x: 34, h: 45, o: 0.5 }, { x: 50, h: 35, o: 0.55 }, { x: 66, h: 55, o: 0.65 }, { x: 82, h: 42, o: 0.7 }, { x: 98, h: 62, o: 0.85 }, { x: 114, h: 50, o: 1 }].map((b, i) => (
+            <rect key={i} x={b.x} y={80 - b.h} width="12" height={b.h} rx="2" fill={`rgba(78,222,163,${b.o * 0.3})`} stroke="#4edea3" strokeWidth="1" opacity={b.o} />
           ))}
-          {/* Trend line */}
-          <polyline
-            points="24,65 40,50 56,58 72,38 88,46 104,28 120,36"
-            stroke="#5de6ff"
-            strokeWidth="1.5"
-            fill="none"
-            opacity=".6"
-            strokeDasharray="3 2"
-          />
-          {/* Baseline */}
-          <line
-            x1="12"
-            y1="80"
-            x2="128"
-            y2="80"
-            stroke="#4edea3"
-            strokeWidth="0.8"
-            opacity=".3"
-          />
+          <polyline points="24,65 40,50 56,58 72,38 88,46 104,28 120,36" stroke="#5de6ff" strokeWidth="1.5" fill="none" opacity=".6" strokeDasharray="3 2" />
+          <line x1="12" y1="80" x2="128" y2="80" stroke="#4edea3" strokeWidth="0.8" opacity=".3" />
         </svg>
       ),
-      bgGradient:
-        "linear-gradient(135deg, #001c10 0%, #0d1c2d 60%, #051424 100%)",
+      bgGradient: "linear-gradient(135deg, #001c10 0%, #0d1c2d 60%, #051424 100%)",
     },
   ];
 
-  const stats = [
-    { value: "8+", label: "YEARS EXPERIENCE" },
-    { value: "4", label: "COMPANIES" },
-    { value: "3", label: "CLOUD PLATFORMS" },
-    { value: "4", label: "CERTIFICATIONS" },
-  ];
-
-  const footerLinks = [
-    { label: "GitHub", href: "https://github.com/arnold655" },
+  const techStack = [
     {
-      label: "LinkedIn",
-      href: "https://www.linkedin.com/in/arnold-kumar-m-bb6012241",
+      group: "Generative AI",
+      color: COLORS.tertiary,
+      items: ["LangChain", "LangGraph", "OpenAI API", "Anthropic Claude", "Ollama", "RAG Pipelines", "Prompt Engineering", "LLM Fine-tuning", "Vector Databases", "Agentic Workflows"],
     },
+    {
+      group: "Machine Learning",
+      color: COLORS.secondary,
+      items: ["PyTorch", "TensorFlow", "scikit-learn", "XGBoost", "LightGBM", "SHAP", "Hugging Face", "NLP / NLU", "Time Series", "Anomaly Detection"],
+    },
+    {
+      group: "Data Engineering",
+      color: COLORS.tertiary,
+      items: ["Apache Spark", "Apache Kafka", "dbt", "Airflow", "PostgreSQL", "Redis", "Snowflake", "Pandas", "PySpark", "ETL Pipelines"],
+    },
+    {
+      group: "MLOps & LLMOps",
+      color: COLORS.secondary,
+      items: ["MLflow", "Weights & Biases", "Docker", "Kubernetes", "CI/CD", "Model Monitoring", "LLM Evaluation", "Feature Stores", "A/B Testing", "Data Versioning"],
+    },
+    {
+      group: "Cloud Platforms",
+      color: COLORS.tertiary,
+      items: ["AWS SageMaker", "Azure ML", "GCP Vertex AI", "AWS Lambda", "Azure OpenAI", "S3 / GCS / Blob", "CloudFormation", "Terraform", "FastAPI", "REST APIs"],
+    },
+  ];
+
+  const certifications = [
+    { name: "AWS Certified Machine Learning – Specialty", issuer: "Amazon Web Services", color: COLORS.secondary, abbr: "AWS" },
+    { name: "Microsoft Certified: Azure AI Engineer Associate", issuer: "Microsoft", color: "#50e6ff", abbr: "MSFT" },
+    { name: "GCP Professional Machine Learning Engineer", issuer: "Google Cloud", color: COLORS.tertiary, abbr: "GCP" },
+    { name: "Generative AI with Large Language Models", issuer: "DeepLearning.AI / Coursera", color: "#a78bfa", abbr: "DL.AI" },
+  ];
+
+  const timeline = [
+    { company: "Accenture", role: "Python Developer", period: "2017 – 2019", description: "Built backend data pipelines and automation systems using Python. Gained foundational experience in software engineering, REST APIs, and cloud infrastructure.", color: COLORS.onSurfaceVariant, active: false },
+    { company: "Bank of America", role: "Data Scientist", period: "2019 – 2022", description: "Developed ML models for credit risk, fraud detection, and customer analytics. Delivered production pipelines on Azure handling high-volume financial data.", color: COLORS.secondary, active: false },
+    { company: "UnitedHealth Group", role: "ML Engineer", period: "2023 – 2024", description: "Engineered NLP-based ticket classification and healthcare fraud analytics systems. Scaled ML pipelines on Apache Spark across large claims datasets.", color: COLORS.secondary, active: false },
+    { company: "Forward Networks", role: "Senior AI/ML Engineer", period: "2025 – Present", description: "Building enterprise Generative AI systems including agentic RAG pipelines, LLM evaluation frameworks, and Network Operations AI assistants.", color: COLORS.tertiary, active: true },
   ];
 
   return (
@@ -381,11 +241,6 @@ export default function Home() {
           background-image: radial-gradient(rgba(78,222,163,0.05) 1px, transparent 1px);
           background-size: 32px 32px;
         }
-        .glass-panel {
-          background: rgba(15,23,42,0.8);
-          backdrop-filter: blur(12px);
-          border: 1px solid rgba(148,163,184,0.1);
-        }
         @media (pointer: fine) {
           a, button, [data-interactive] { cursor: none !important; }
           #cursor-dot, #cursor-ring {
@@ -396,43 +251,24 @@ export default function Home() {
             z-index: 9999;
             transform: translate(-50%,-50%);
           }
-          #cursor-dot {
-            width: 6px; height: 6px;
-            background: #10B981;
-            transition: width .3s, height .3s;
-          }
+          #cursor-dot { width: 6px; height: 6px; background: #10B981; transition: width .3s, height .3s; }
           #cursor-ring {
             width: 32px; height: 32px;
             border: 1px solid #10B981;
             box-shadow: 0 0 10px rgba(16,185,129,.2);
             transition: width .3s, height .3s, background-color .3s;
           }
-          body.cursor-active #cursor-ring {
-            width: 56px; height: 56px;
-            background: rgba(16,185,129,.05);
-          }
+          body.cursor-active #cursor-ring { width: 56px; height: 56px; background: rgba(16,185,129,.05); }
         }
         .underline-expand { position: relative; }
         .underline-expand::after {
-          content: '';
-          position: absolute;
-          width: 0; height: 1px;
-          bottom: -2px; left: 50%;
-          background: #5de6ff;
-          transition: all .3s;
-          transform: translateX(-50%);
+          content: ''; position: absolute;
+          width: 0; height: 1px; bottom: -2px; left: 50%;
+          background: #5de6ff; transition: all .3s; transform: translateX(-50%);
         }
         .underline-expand:hover::after { width: 100%; }
-        .metric-card {
-          transition: border-color .3s, box-shadow .3s, opacity .7s, transform .7s;
-        }
-        .metric-card:hover {
-          border-color: #4edea3 !important;
-          box-shadow: 0 0 20px rgba(78,222,163,.07);
-        }
         [data-reveal] {
-          opacity: 0;
-          transform: translateY(24px);
+          opacity: 0; transform: translateY(24px);
           transition: opacity .7s ease, transform .7s ease;
         }
         @keyframes spin-slow { to { transform: rotate(360deg); } }
@@ -445,21 +281,14 @@ export default function Home() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-        .profile-card-glow {
-          box-shadow: 0 0 0 1px rgba(78,222,163,.15), 0 8px 32px rgba(78,222,163,.12), 0 32px 64px rgba(5,20,36,.8);
-        }
-        .project-card-hover {
-          transition: border-color .3s, box-shadow .3s, transform .3s;
-        }
-        .project-card-hover:hover {
-          border-color: rgba(93,230,255,.25) !important;
-          box-shadow: 0 0 32px rgba(93,230,255,.06), 0 16px 48px rgba(5,20,36,.6);
+        .card-hover { transition: border-color .3s, box-shadow .3s, transform .3s; }
+        .card-hover:hover {
+          border-color: rgba(93,230,255,.3) !important;
+          box-shadow: 0 0 24px rgba(93,230,255,.06), 0 12px 40px rgba(5,20,36,.6);
           transform: translateY(-2px);
         }
         .mobile-nav {
-          display: none;
-          flex-direction: column;
-          gap: 1.5rem;
+          display: none; flex-direction: column; gap: 1.5rem;
           padding: 1.5rem 1.5rem 2rem;
           background: rgba(5,20,36,.97);
           border-top: 1px solid rgba(69,70,77,.3);
@@ -473,6 +302,28 @@ export default function Home() {
           0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
           40% { opacity: 0.8; transform: translateY(-30px) scale(1.2); }
         }
+        .section-label {
+          font-family: 'JetBrains Mono', monospace;
+          font-size: 11px;
+          letter-spacing: .12em;
+          color: #4edea3;
+          text-transform: uppercase;
+          margin-bottom: 12px;
+        }
+        .section-title {
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(28px, 4vw, 40px);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+          color: #d4e4fa;
+          margin-bottom: 16px;
+        }
+        .section-divider {
+          width: 48px; height: 2px;
+          background: linear-gradient(90deg, #4edea3, #5de6ff);
+          margin-bottom: 24px;
+        }
       `}</style>
 
       <div id="cursor-dot" className="hidden md:block" />
@@ -481,709 +332,195 @@ export default function Home() {
       {/* NAV */}
       <nav
         style={{
-          position: "fixed",
-          top: 0,
-          width: "100%",
-          zIndex: 50,
-          background: "rgba(5,20,36,.85)",
+          position: "fixed", top: 0, width: "100%", zIndex: 50,
+          background: "rgba(5,20,36,.9)",
           backdropFilter: "blur(20px)",
           borderBottom: `1px solid rgba(69,70,77,${scrolled ? ".3" : ".1"})`,
           transition: "border-color .3s",
         }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "0 24px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            height: 80,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "'Inter',sans-serif",
-              fontSize: 24,
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              color: COLORS.onSurface,
-            }}
-          >
-            Arnold
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
+          <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 20, fontWeight: 700, letterSpacing: "-0.02em", color: COLORS.onSurface }}>
+            Arnold<span className="gradient-text">.</span>
           </span>
 
-          <div
-            className="hidden md:flex"
-            style={{ gap: 32, alignItems: "center" }}
-          >
+          <div className="hidden md:flex" style={{ gap: 28, alignItems: "center" }}>
             {navLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                target={l.target}
-                download={l.download}
-                style={{
-                  fontFamily: "'Inter',sans-serif",
-                  fontSize: 16,
-                  color: COLORS.onSurfaceVariant,
-                  textDecoration: "none",
-                  transition: "color .3s",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = COLORS.secondary)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = COLORS.onSurfaceVariant)
-                }
+              <Link key={l.label} href={l.href}
+                style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: COLORS.onSurfaceVariant, textDecoration: "none", transition: "color .3s" }}
+                className="underline-expand"
+                onMouseEnter={(e) => (e.currentTarget.style.color = COLORS.secondary)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = COLORS.onSurfaceVariant)}
               >
                 {l.label}
               </Link>
             ))}
           </div>
 
-          <Link
-            href="https://www.linkedin.com/in/arnold-kumar-m-bb6012241"
-            target="_blank"
-            style={{
-              background: COLORS.secondary,
-              color: COLORS.onPrimaryFixed,
-              fontWeight: 700,
-              padding: "8px 24px",
-              borderRadius: 4,
-              fontSize: 14,
-              textDecoration: "none",
-              transition: "opacity .2s",
-            }}
-            className="hidden md:inline-flex items-center"
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = ".8")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          <a href="/resume.pdf" download
+            style={{ background: COLORS.tertiary, color: COLORS.onPrimaryFixed, fontWeight: 700, padding: "8px 20px", borderRadius: 4, fontSize: 13, textDecoration: "none", transition: "opacity .2s", display: "inline-flex", alignItems: "center", gap: 6 }}
+            className="hidden md:inline-flex"
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = ".85")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
           >
-            Connect
-          </Link>
+            <IconDownload /> Resume
+          </a>
 
-          <button
-            className="md:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              background: "none",
-              border: "none",
-              color: COLORS.onSurface,
-              padding: 8,
-            }}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              {menuOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
+          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}
+            style={{ background: "none", border: "none", color: COLORS.onSurface, padding: 8 }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {menuOpen ? (<><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>) : (<><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>)}
             </svg>
           </button>
         </div>
 
         <div className={`mobile-nav${menuOpen ? " open" : ""}`}>
           {navLinks.map((l) => (
-            <Link
-              key={l.label}
-              href={l.href}
-              target={l.target}
-              download={l.download}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily: "'JetBrains Mono',monospace",
-                fontSize: 14,
-                letterSpacing: ".05em",
-                color: COLORS.onSurface,
-                textDecoration: "none",
-              }}
-            >
+            <Link key={l.label} href={l.href} onClick={() => setMenuOpen(false)}
+              style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 14, letterSpacing: ".05em", color: COLORS.onSurface, textDecoration: "none" }}>
               {l.label}
             </Link>
           ))}
-          <Link
-            href="https://www.linkedin.com/in/arnold-kumar-m-bb6012241"
-            target="_blank"
-            style={{
-              background: COLORS.secondary,
-              color: COLORS.onPrimaryFixed,
-              fontWeight: 700,
-              padding: "10px 20px",
-              borderRadius: 4,
-              fontSize: 14,
-              textDecoration: "none",
-              textAlign: "center",
-            }}
-          >
-            Connect
-          </Link>
+          <a href="/resume.pdf" download style={{ background: COLORS.tertiary, color: COLORS.onPrimaryFixed, fontWeight: 700, padding: "10px 20px", borderRadius: 4, fontSize: 14, textDecoration: "none", textAlign: "center" }}>
+            Download Resume
+          </a>
         </div>
       </nav>
 
       <main className="grid-pattern">
-        {/* HERO */}
+
+        {/* ── HERO ─────────────────────────────────────────────────── */}
         <section
           ref={heroRef}
-          style={{
-            position: "relative",
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            paddingTop: 80,
-            paddingBottom: 80,
-            overflow: "hidden",
-          }}
+          style={{ position: "relative", minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 72, paddingBottom: 80, overflow: "hidden" }}
         >
           {/* Background layers */}
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 0,
-              pointerEvents: "none",
-            }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(ellipse at 75% 50%, rgba(93,230,255,.07) 0%, transparent 55%)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "radial-gradient(ellipse at 25% 60%, rgba(78,222,163,.06) 0%, transparent 50%)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(125deg, transparent 35%, rgba(93,230,255,.015) 50%, transparent 65%)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(115deg, transparent 45%, rgba(78,222,163,.012) 55%, transparent 70%)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage:
-                  "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px)",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background:
-                  "linear-gradient(to bottom, #051424 0%, transparent 18%, transparent 82%, #051424 100%)",
-              }}
-            />
+          <div style={{ position: "absolute", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 75% 50%, rgba(93,230,255,.07) 0%, transparent 55%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 25% 60%, rgba(78,222,163,.06) 0%, transparent 50%)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(125deg, transparent 35%, rgba(93,230,255,.015) 50%, transparent 65%)" }} />
+            <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px)" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, #051424 0%, transparent 18%, transparent 82%, #051424 100%)" }} />
             {[
-              {
-                left: "12%",
-                top: "28%",
-                delay: "0s",
-                dur: "7s",
-                color: COLORS.tertiary,
-              },
-              {
-                left: "62%",
-                top: "18%",
-                delay: "2.5s",
-                dur: "9s",
-                color: COLORS.secondary,
-              },
-              {
-                left: "82%",
-                top: "58%",
-                delay: "1.2s",
-                dur: "6s",
-                color: COLORS.secondary,
-              },
-              {
-                left: "38%",
-                top: "72%",
-                delay: "3.5s",
-                dur: "8s",
-                color: COLORS.tertiary,
-              },
+              { left: "12%", top: "28%", delay: "0s", dur: "7s", color: COLORS.tertiary },
+              { left: "62%", top: "18%", delay: "2.5s", dur: "9s", color: COLORS.secondary },
+              { left: "82%", top: "58%", delay: "1.2s", dur: "6s", color: COLORS.secondary },
+              { left: "38%", top: "72%", delay: "3.5s", dur: "8s", color: COLORS.tertiary },
             ].map((p, i) => (
-              <div
-                key={i}
-                style={{
-                  position: "absolute",
-                  left: p.left,
-                  top: p.top,
-                  width: 3,
-                  height: 3,
-                  borderRadius: "50%",
-                  background: p.color,
-                  boxShadow: `0 0 6px ${p.color}`,
-                  animation: `float-particle ${p.dur} ease-in-out ${p.delay} infinite`,
-                }}
-              />
+              <div key={i} style={{ position: "absolute", left: p.left, top: p.top, width: 3, height: 3, borderRadius: "50%", background: p.color, boxShadow: `0 0 6px ${p.color}`, animation: `float-particle ${p.dur} ease-in-out ${p.delay} infinite` }} />
             ))}
           </div>
 
           <div
-            style={{
-              maxWidth: 1400,
-              margin: "0 auto",
-              padding: "0 24px",
-              width: "100%",
-              position: "relative",
-              zIndex: 1,
-              display: "flex",
-            }}
+            style={{ maxWidth: 1400, margin: "0 auto", padding: "0 24px", width: "100%", position: "relative", zIndex: 1, display: "flex" }}
             className="flex-col md:flex-row gap-10 md:gap-16 items-start md:items-center"
           >
-            {/* LEFT – text */}
+            {/* LEFT */}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "6px 14px 6px 10px",
-                  background: "rgba(78,222,163,.06)",
-                  border: "1px solid rgba(78,222,163,.2)",
-                  borderRadius: 99,
-                  marginBottom: 28,
-                }}
-              >
-                <span
-                  className="pulse-dot"
-                  style={{
-                    display: "inline-block",
-                    width: 7,
-                    height: 7,
-                    borderRadius: "50%",
-                    background: COLORS.tertiary,
-                    flexShrink: 0,
-                  }}
-                />
-                <span
-                  style={{
-                    fontFamily: "'JetBrains Mono',monospace",
-                    fontSize: 11,
-                    letterSpacing: ".08em",
-                    color: COLORS.tertiary,
-                  }}
-                >
-                  SENIOR AI/ML Engineer
+              {/* Live badge */}
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px 6px 10px", background: "rgba(78,222,163,.06)", border: "1px solid rgba(78,222,163,.2)", borderRadius: 99, marginBottom: 24 }}>
+                <span className="pulse-dot" style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: COLORS.tertiary, flexShrink: 0 }} />
+                <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".08em", color: COLORS.tertiary }}>
+                  OPEN TO NEW ROLES
                 </span>
               </div>
 
-              <h1
-                style={{
-                  fontFamily: "'Inter',sans-serif",
-                  fontWeight: 700,
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
-                  color: COLORS.onSurface,
-                  marginBottom: 32,
-                  fontSize: "clamp(36px, 6vw, 64px)",
-                }}
-              >
+              {/* Name + title */}
+              <div style={{ marginBottom: 20 }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, letterSpacing: ".1em", color: COLORS.onSurfaceVariant, marginBottom: 8 }}>
+                  // ARNOLD KUMAR M
+                </div>
+                <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "clamp(15px, 2vw, 18px)", fontWeight: 500, color: COLORS.secondary, letterSpacing: ".04em" }}>
+                  Senior AI/ML Engineer
+                </div>
+              </div>
+
+              {/* Headline */}
+              <h1 style={{ fontFamily: "'Inter',sans-serif", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1, color: COLORS.onSurface, marginBottom: 28, fontSize: "clamp(34px, 5.5vw, 60px)" }}>
                 <TextScramble
                   text="Building Enterprise AI Systems That Scale."
-                  finalRender={
-                    <>
-                      Building Enterprise{" "}
-                      <span className="gradient-text">AI Systems</span> That
-                      Scale.
-                    </>
-                  }
+                  finalRender={<>Building Enterprise{" "}<span className="gradient-text">AI Systems</span> That Scale.</>}
                 />
               </h1>
 
-              <p
-                style={{
-                  fontFamily: "'Inter',sans-serif",
-                  fontSize: 18,
-                  lineHeight: 1.6,
-                  color: COLORS.onSurfaceVariant,
-                  maxWidth: 560,
-                  marginBottom: 40,
-                }}
-              >
-                Senior AI/ML Engineer with 8+ years of experience designing
-                machine learning platforms, RAG applications, and agentic AI
-                systems across network infrastructure, healthcare, and financial
-                services.
+              {/* Subheadline */}
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "clamp(15px, 1.8vw, 18px)", lineHeight: 1.7, color: COLORS.onSurfaceVariant, maxWidth: 560, marginBottom: 40 }}>
+                Senior AI/ML Engineer with 8+ years of experience building machine learning systems, data platforms, RAG applications, agentic AI workflows, and Generative AI solutions across network infrastructure, healthcare, and financial services.
               </p>
 
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
-                <button
-                  style={{
-                    background: COLORS.secondary,
-                    color: COLORS.onPrimaryFixed,
-                    fontWeight: 700,
-                    padding: "14px 32px",
-                    borderRadius: 4,
-                    border: "none",
-                    fontSize: 16,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    cursor: "none",
-                    transition: "opacity .2s",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = ".9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              {/* CTA buttons */}
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+                <a href="/resume.pdf" download
+                  style={{ background: COLORS.secondary, color: COLORS.onPrimaryFixed, fontWeight: 700, padding: "13px 28px", borderRadius: 4, border: "none", fontSize: 15, display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", transition: "opacity .2s" }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = ".85")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
                 >
-                  Explore Systems <IconArrowRight />
-                </button>
-                <button
-                  style={{
-                    background: "transparent",
-                    color: COLORS.onSurface,
-                    fontFamily: "'JetBrains Mono',monospace",
-                    fontWeight: 500,
-                    fontSize: 14,
-                    letterSpacing: ".05em",
-                    padding: "14px 32px",
-                    borderRadius: 4,
-                    border: "1px solid rgba(148,163,184,.2)",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 8,
-                    cursor: "none",
-                    transition: "border-color .3s",
-                  }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.borderColor = COLORS.secondary)
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.borderColor = "rgba(148,163,184,.2)")
-                  }
+                  <IconDownload /> View Resume
+                </a>
+                <Link href="https://www.linkedin.com/in/arnold-kumar-m-bb6012241" target="_blank"
+                  style={{ background: "rgba(93,230,255,.08)", color: COLORS.secondary, fontWeight: 600, padding: "13px 24px", borderRadius: 4, border: "1px solid rgba(93,230,255,.25)", fontSize: 15, display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", transition: "background .2s, border-color .2s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(93,230,255,.14)"; e.currentTarget.style.borderColor = "rgba(93,230,255,.5)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(93,230,255,.08)"; e.currentTarget.style.borderColor = "rgba(93,230,255,.25)"; }}
                 >
-                  View Tech Stack <IconTerminal />
-                </button>
+                  <IconLinkedIn /> LinkedIn
+                </Link>
+                <Link href="https://github.com/arnold655" target="_blank"
+                  style={{ background: "rgba(78,222,163,.06)", color: COLORS.tertiary, fontWeight: 600, padding: "13px 24px", borderRadius: 4, border: "1px solid rgba(78,222,163,.2)", fontSize: 15, display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", transition: "background .2s, border-color .2s" }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(78,222,163,.12)"; e.currentTarget.style.borderColor = "rgba(78,222,163,.4)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(78,222,163,.06)"; e.currentTarget.style.borderColor = "rgba(78,222,163,.2)"; }}
+                >
+                  <IconGitHub /> GitHub
+                </Link>
+                <Link href="#contact"
+                  style={{ background: "transparent", color: COLORS.onSurface, fontWeight: 500, padding: "13px 24px", borderRadius: 4, border: "1px solid rgba(148,163,184,.18)", fontSize: 15, display: "inline-flex", alignItems: "center", gap: 8, textDecoration: "none", transition: "border-color .2s" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(148,163,184,.4)")}
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(148,163,184,.18)")}
+                >
+                  Contact Me <IconArrowRight />
+                </Link>
               </div>
             </div>
 
             {/* RIGHT – AI ID Card */}
             <div
               className="w-full md:w-[420px]"
-              style={{
-                flexShrink: 0,
-                position: "relative",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: 460,
-              }}
+              style={{ flexShrink: 0, position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: 460 }}
             >
-              {/* Ambient glow */}
-              <div
-                style={{
-                  position: "absolute",
-                  width: 420,
-                  height: 420,
-                  background:
-                    "radial-gradient(circle, rgba(78,222,163,.12) 0%, transparent 70%)",
-                  borderRadius: "50%",
-                  filter: "blur(56px)",
-                  zIndex: 0,
-                }}
-              />
+              <div style={{ position: "absolute", width: 420, height: 420, background: "radial-gradient(circle, rgba(78,222,163,.12) 0%, transparent 70%)", borderRadius: "50%", filter: "blur(56px)", zIndex: 0 }} />
 
-              {/* Card frame */}
-              <div
-                className="w-[280px] h-[420px] md:w-[320px] md:h-[500px]"
-                style={{ position: "relative", zIndex: 1 }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: 26,
-                    height: 26,
-                    borderTop: `2px solid ${COLORS.tertiary}`,
-                    borderLeft: `2px solid ${COLORS.tertiary}`,
-                    zIndex: 4,
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    width: 26,
-                    height: 26,
-                    borderTop: `2px solid ${COLORS.tertiary}`,
-                    borderRight: `2px solid ${COLORS.tertiary}`,
-                    zIndex: 4,
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    width: 26,
-                    height: 26,
-                    borderBottom: `2px solid ${COLORS.tertiary}`,
-                    borderLeft: `2px solid ${COLORS.tertiary}`,
-                    zIndex: 4,
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    width: 26,
-                    height: 26,
-                    borderBottom: `2px solid ${COLORS.tertiary}`,
-                    borderRight: `2px solid ${COLORS.tertiary}`,
-                    zIndex: 4,
-                  }}
-                />
-
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    border: "1px solid rgba(78,222,163,.15)",
-                    borderRadius: 2,
-                    zIndex: 3,
-                    pointerEvents: "none",
-                  }}
-                />
-
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    borderRadius: 2,
-                    overflow: "hidden",
-                    background: "#0a1929",
-                  }}
-                >
-                  <Image
-                    src="/profile.jpeg"
-                    alt="Arnold Kumar"
-                    fill
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: "top center",
-                    }}
-                    priority
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: "55%",
-                      background:
-                        "linear-gradient(to top, rgba(5,20,36,1) 0%, rgba(5,20,36,.75) 50%, transparent 100%)",
-                      zIndex: 1,
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      backgroundImage:
-                        "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.04) 3px, rgba(0,0,0,.04) 4px)",
-                      zIndex: 2,
-                      pointerEvents: "none",
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 12,
-                      left: 12,
-                      right: 12,
-                      zIndex: 3,
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 4,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 9,
-                        letterSpacing: ".1em",
-                        color: COLORS.tertiary,
-                        textShadow: "0 0 10px rgba(78,222,163,.6)",
-                      }}
-                    >
-                      SCAN_ID: ARNOLD
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 8,
-                        letterSpacing: ".08em",
-                        color: "rgba(212,228,250,.45)",
-                      }}
-                    >
-                      CLEARANCE: LVL-5 / ACTIVE
-                    </span>
+              <div className="w-[280px] h-[420px] md:w-[320px] md:h-[500px]" style={{ position: "relative", zIndex: 1 }}>
+                {/* Corner brackets */}
+                {[{ top: 0, left: 0, borderTop: `2px solid ${COLORS.tertiary}`, borderLeft: `2px solid ${COLORS.tertiary}` }, { top: 0, right: 0, borderTop: `2px solid ${COLORS.tertiary}`, borderRight: `2px solid ${COLORS.tertiary}` }, { bottom: 0, left: 0, borderBottom: `2px solid ${COLORS.tertiary}`, borderLeft: `2px solid ${COLORS.tertiary}` }, { bottom: 0, right: 0, borderBottom: `2px solid ${COLORS.tertiary}`, borderRight: `2px solid ${COLORS.tertiary}` }].map((s, i) => (
+                  <div key={i} style={{ position: "absolute", width: 26, height: 26, zIndex: 4, ...s }} />
+                ))}
+                <div style={{ position: "absolute", inset: 0, border: "1px solid rgba(78,222,163,.15)", borderRadius: 2, zIndex: 3, pointerEvents: "none" }} />
+                <div style={{ position: "absolute", inset: 0, borderRadius: 2, overflow: "hidden", background: "#0a1929" }}>
+                  <Image src="/profile.jpeg" alt="Arnold Kumar M" fill style={{ objectFit: "cover", objectPosition: "top center" }} priority />
+                  <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "55%", background: "linear-gradient(to top, rgba(5,20,36,1) 0%, rgba(5,20,36,.75) 50%, transparent 100%)", zIndex: 1 }} />
+                  <div style={{ position: "absolute", inset: 0, backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.04) 3px, rgba(0,0,0,.04) 4px)", zIndex: 2, pointerEvents: "none" }} />
+                  <div style={{ position: "absolute", top: 12, left: 12, right: 12, zIndex: 3, display: "flex", flexDirection: "column", gap: 4 }}>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".1em", color: COLORS.tertiary, textShadow: "0 0 10px rgba(78,222,163,.6)" }}>SCAN_ID: ARNOLD_KUMAR_M</span>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, letterSpacing: ".08em", color: "rgba(212,228,250,.45)" }}>CLEARANCE: LVL-5 / ACTIVE</span>
                   </div>
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 16,
-                      left: 14,
-                      right: 14,
-                      zIndex: 3,
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 8,
-                        letterSpacing: ".1em",
-                        color: "rgba(212,228,250,.4)",
-                        marginBottom: 4,
-                      }}
-                    >
-                      ROLE
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 10,
-                        letterSpacing: ".06em",
-                        color: COLORS.secondary,
-                        fontWeight: 500,
-                        marginBottom: 12,
-                      }}
-                    >
-                      SENIOR_AI_ML_ENGINEER
-                    </div>
-                    <div
-                      style={{ display: "flex", alignItems: "center", gap: 6 }}
-                    >
-                      <span
-                        className="pulse-dot"
-                        style={{
-                          display: "inline-block",
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          background: COLORS.tertiary,
-                          boxShadow: `0 0 6px ${COLORS.tertiary}`,
-                          flexShrink: 0,
-                        }}
-                      />
-                      <span
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 9,
-                          letterSpacing: ".1em",
-                          color: COLORS.tertiary,
-                        }}
-                      >
-                        STATUS: Building GenAI @ Forward Networks
-                      </span>
+                  <div style={{ position: "absolute", bottom: 16, left: 14, right: 14, zIndex: 3 }}>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, letterSpacing: ".1em", color: "rgba(212,228,250,.4)", marginBottom: 4 }}>CURRENT ROLE</div>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".06em", color: COLORS.secondary, fontWeight: 500, marginBottom: 12 }}>SENIOR_AI_ML_ENGINEER</div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <span className="pulse-dot" style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: COLORS.tertiary, boxShadow: `0 0 6px ${COLORS.tertiary}`, flexShrink: 0 }} />
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".1em", color: COLORS.tertiary }}>@ Forward Networks</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Status badge – desktop only */}
-              <div
-                className="hidden md:flex"
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  background: "rgba(12,22,40,.97)",
-                  border: "1px solid rgba(93,230,255,.2)",
-                  borderRadius: 6,
-                  padding: "10px 14px",
-                  zIndex: 5,
-                  backdropFilter: "blur(16px)",
-                  flexDirection: "column",
-                  gap: 5,
-                  minWidth: 138,
-                  boxShadow: "0 8px 24px rgba(0,0,0,.5)",
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: "'JetBrains Mono',monospace",
-                    fontSize: 8,
-                    letterSpacing: ".1em",
-                    color: "rgba(198,198,205,.4)",
-                    marginBottom: 2,
-                    borderBottom: "1px solid rgba(93,230,255,.08)",
-                    paddingBottom: 4,
-                  }}
-                >
-                  CURRENT FOCUS
-                </div>
-                {[
-                  { label: "RAG", color: COLORS.tertiary },
-                  { label: "Agentic AI", color: COLORS.secondary },
-                  { label: "MLOps", color: COLORS.onSurface },
-                ].map((item) => (
-                  <div
-                    key={item.label}
-                    style={{ display: "flex", alignItems: "center", gap: 7 }}
-                  >
-                    <div
-                      style={{
-                        width: 4,
-                        height: 4,
-                        borderRadius: "50%",
-                        background: item.color,
-                        boxShadow: `0 0 4px ${item.color}`,
-                        flexShrink: 0,
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 9,
-                        color: item.color,
-                        letterSpacing: ".04em",
-                      }}
-                    >
-                      {item.label}
-                    </span>
+              {/* Focus badge */}
+              <div className="hidden md:flex"
+                style={{ position: "absolute", bottom: 0, right: 0, background: "rgba(12,22,40,.97)", border: "1px solid rgba(93,230,255,.2)", borderRadius: 6, padding: "10px 14px", zIndex: 5, backdropFilter: "blur(16px)", flexDirection: "column", gap: 5, minWidth: 138, boxShadow: "0 8px 24px rgba(0,0,0,.5)" }}>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 8, letterSpacing: ".1em", color: "rgba(198,198,205,.4)", marginBottom: 2, borderBottom: "1px solid rgba(93,230,255,.08)", paddingBottom: 4 }}>CURRENT FOCUS</div>
+                {[{ label: "RAG Pipelines", color: COLORS.tertiary }, { label: "Agentic AI", color: COLORS.secondary }, { label: "LLMOps", color: COLORS.onSurface }].map((item) => (
+                  <div key={item.label} style={{ display: "flex", alignItems: "center", gap: 7 }}>
+                    <div style={{ width: 4, height: 4, borderRadius: "50%", background: item.color, boxShadow: `0 0 4px ${item.color}`, flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: item.color, letterSpacing: ".04em" }}>{item.label}</span>
                   </div>
                 ))}
               </div>
@@ -1191,431 +528,203 @@ export default function Home() {
           </div>
         </section>
 
-        {/* AI SYSTEMS */}
-        <section
-          id="ai-systems"
-          style={{ padding: "120px 0", position: "relative" }}
-        >
+        {/* ── ABOUT ────────────────────────────────────────────────── */}
+        <section id="about" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-            <div
-              data-reveal
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                marginBottom: 64,
-                gap: 24,
-              }}
-            >
-              <div style={{ maxWidth: 480 }}>
-                <h2
-                  style={{
-                    fontFamily: "'Inter',sans-serif",
-                    fontSize: 32,
-                    fontWeight: 600,
-                    lineHeight: 1.3,
-                    color: COLORS.onSurface,
-                    marginBottom: 12,
-                  }}
-                >
-                  AI Systems in Motion
-                </h2>
-                <p
-                  style={{
-                    color: COLORS.onSurfaceVariant,
-                    fontSize: 16,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  Explore the intelligence architecture powering next-generation
-                  enterprise systems — from real-time ML pipelines to autonomous
-                  agentic workflows.
+            <div data-reveal style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 64, alignItems: "start" }}>
+              {/* Left */}
+              <div>
+                <div className="section-label">// WHO I AM</div>
+                <h2 className="section-title">Who I Am</h2>
+                <div className="section-divider" />
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, lineHeight: 1.8, color: COLORS.onSurfaceVariant, marginBottom: 20 }}>
+                  I am a Senior AI/ML Engineer with 8+ years of experience spanning software engineering, data engineering, machine learning, and Generative AI.
+                </p>
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, lineHeight: 1.8, color: COLORS.onSurfaceVariant, marginBottom: 20 }}>
+                  My career started as a Python Developer at Accenture, evolved into Data Science at Bank of America, expanded into ML Engineering at UnitedHealth Group, and currently focuses on enterprise Generative AI systems at Forward Networks.
+                </p>
+                <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, lineHeight: 1.8, color: COLORS.onSurfaceVariant }}>
+                  I bridge the gap between research and production — moving AI systems from prototype to deployment at enterprise scale.
                 </p>
               </div>
-              <span
-                style={{
-                  fontFamily: "'JetBrains Mono',monospace",
-                  fontSize: 13,
-                  letterSpacing: ".05em",
-                  color: COLORS.tertiary,
-                }}
-              >
-                / AI_SYSTEMS_SHOWCASE
-              </span>
-            </div>
 
-            <div
-              data-reveal
-              style={{
-                position: "relative",
-                borderRadius: 12,
-                overflow: "hidden",
-                border: "1px solid rgba(78,222,163,.15)",
-                background: "rgba(0,0,0,.96)",
-                boxShadow:
-                  "0 0 80px rgba(78,222,163,.04), 0 32px 64px rgba(5,20,36,.8)",
-              }}
-            >
-              <Spotlight
-                className="-top-40 left-0 md:left-60 md:-top-20"
-                fill="#4edea3"
-              />
-
-              <div
-                style={{ display: "flex" }}
-                className="flex-col md:flex-row md:h-[500px]"
-              >
-                {/* Left – text */}
-                <div
-                  style={{
-                    flex: 1,
-                    padding: "48px",
-                    position: "relative",
-                    zIndex: 10,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 8,
-                      padding: "4px 12px 4px 10px",
-                      background: "rgba(78,222,163,.06)",
-                      border: "1px solid rgba(78,222,163,.2)",
-                      borderRadius: 99,
-                      marginBottom: 24,
-                      width: "fit-content",
-                    }}
-                  >
-                    <span
-                      className="pulse-dot"
-                      style={{
-                        display: "inline-block",
-                        width: 6,
-                        height: 6,
-                        borderRadius: "50%",
-                        background: COLORS.tertiary,
-                        flexShrink: 0,
-                      }}
-                    />
-                    <span
-                      style={{
-                        fontFamily: "'JetBrains Mono',monospace",
-                        fontSize: 10,
-                        letterSpacing: ".1em",
-                        color: COLORS.tertiary,
-                      }}
-                    >
-                      INTERACTIVE_3D
-                    </span>
-                  </div>
-
-                  <h3
-                    className="gradient-text"
-                    style={{
-                      fontFamily: "'Inter',sans-serif",
-                      fontWeight: 700,
-                      letterSpacing: "-0.02em",
-                      lineHeight: 1.15,
-                      marginBottom: 20,
-                      fontSize: "clamp(28px, 4vw, 44px)",
-                    }}
-                  >
-                    Enterprise AI
-                    <br />
-                    Architecture
-                  </h3>
-
-                  <p
-                    style={{
-                      fontFamily: "'Inter',sans-serif",
-                      fontSize: 16,
-                      lineHeight: 1.7,
-                      color: COLORS.onSurfaceVariant,
-                      maxWidth: 420,
-                      marginBottom: 32,
-                    }}
-                  >
-                    From agentic RAG pipelines to real-time ML inference at
-                    scale — building the intelligence layer that powers
-                    enterprise decision-making.
-                  </p>
-
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                    {[
-                      "RAG Pipelines",
-                      "Agentic AI",
-                      "MLOps",
-                      "LLM Fine-tuning",
-                    ].map((badge) => (
-                      <span
-                        key={badge}
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 11,
-                          padding: "4px 12px",
-                          background: COLORS.surfaceVariant,
-                          borderRadius: 3,
-                          color: COLORS.onSurfaceVariant,
-                          border: "1px solid rgba(93,230,255,.1)",
-                        }}
-                      >
-                        {badge}
-                      </span>
+              {/* Right */}
+              <div>
+                <div style={{ background: "rgba(15,23,42,.7)", border: "1px solid rgba(78,222,163,.15)", borderRadius: 8, padding: 32 }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".12em", color: COLORS.tertiary, marginBottom: 20 }}>I SPECIALIZE IN</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                    {["RAG Systems", "Agentic AI Workflows", "LLM Applications", "MLOps & LLMOps", "Cloud AI Platforms", "Production AI Systems"].map((spec) => (
+                      <span key={spec} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, padding: "8px 16px", background: "rgba(78,222,163,.06)", border: "1px solid rgba(78,222,163,.2)", borderRadius: 4, color: COLORS.tertiary, letterSpacing: ".03em" }}>{spec}</span>
                     ))}
                   </div>
-                </div>
-
-                {/* Right – Spline scene */}
-                <div
-                  className="min-h-[300px] md:min-h-0"
-                  style={{ flex: 1, position: "relative" }}
-                >
-                  <SplineScene
-                    scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                    className="absolute inset-0 w-full h-full"
-                  />
+                  <div style={{ marginTop: 28, paddingTop: 20, borderTop: "1px solid rgba(69,70,77,.2)" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, textAlign: "center" }}>
+                      {[{ v: "8+", l: "Years" }, { v: "3", l: "Domains" }, { v: "4", l: "Companies" }].map((s) => (
+                        <div key={s.l}>
+                          <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 28, fontWeight: 700, color: COLORS.secondary, lineHeight: 1 }}>{s.v}</div>
+                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".1em", color: COLORS.onSurfaceVariant, marginTop: 4 }}>{s.l}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CASE STUDIES */}
-        <section id="portfolio" style={{ padding: "120px 0" }}>
+        {/* ── CURRENT ROLE ─────────────────────────────────────────── */}
+        <section id="current-role" style={{ padding: "80px 0", background: "rgba(5,20,36,.6)", borderTop: "1px solid rgba(69,70,77,.15)" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-            <div style={{ textAlign: "center", marginBottom: 80 }}>
-              <h2
-                style={{
-                  fontFamily: "'Inter',sans-serif",
-                  fontSize: 32,
-                  fontWeight: 600,
-                  lineHeight: 1.3,
-                  color: COLORS.onSurface,
-                  marginBottom: 8,
-                }}
-              >
-                Technical Case Studies
-              </h2>
-              <div
-                style={{
-                  width: 80,
-                  height: 3,
-                  background: COLORS.tertiary,
-                  margin: "0 auto",
-                }}
-              />
+            <div data-reveal style={{ maxWidth: 800, margin: "0 auto" }}>
+              <div style={{ textAlign: "center", marginBottom: 40 }}>
+                <div className="section-label" style={{ justifyContent: "center", display: "flex" }}>// CURRENT POSITION</div>
+                <h2 className="section-title" style={{ textAlign: "center" }}>Currently Building</h2>
+              </div>
+              <div style={{ background: "rgba(15,23,42,.8)", border: "1px solid rgba(78,222,163,.2)", borderRadius: 10, padding: "36px 40px", position: "relative", overflow: "hidden" }}>
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: "linear-gradient(90deg, #4edea3, #5de6ff, transparent)" }} />
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 28 }}>
+                  <div>
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".1em", color: COLORS.tertiary, marginBottom: 6 }}>COMPANY</div>
+                    <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 26, fontWeight: 700, color: COLORS.onSurface, marginBottom: 4 }}>Forward Networks</div>
+                    <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, color: COLORS.secondary, fontWeight: 500 }}>Senior AI/ML Engineer – Generative AI</div>
+                  </div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "6px 14px 6px 10px", background: "rgba(78,222,163,.06)", border: "1px solid rgba(78,222,163,.2)", borderRadius: 99, alignSelf: "flex-start" }}>
+                    <span className="pulse-dot" style={{ display: "inline-block", width: 7, height: 7, borderRadius: "50%", background: COLORS.tertiary, flexShrink: 0 }} />
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".08em", color: COLORS.tertiary }}>2025 – PRESENT</span>
+                  </div>
+                </div>
+                <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: COLORS.onSurfaceVariant, marginBottom: 14 }}>BUILDING ENTERPRISE AI SOLUTIONS INCLUDING:</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                  {["Agentic AI workflows using LangGraph for automated network operations", "Production RAG pipelines with hybrid retrieval and re-ranking", "LLM evaluation systems for response quality and hallucination detection", "Network Operations AI Assistants for real-time infrastructure queries", "Cloud-native AI platforms on AWS and GCP with MLOps automation"].map((item, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                      <span style={{ color: COLORS.tertiary, flexShrink: 0, marginTop: 1, fontFamily: "'JetBrains Mono',monospace", fontSize: 12 }}>▸</span>
+                      <span style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, color: COLORS.onSurfaceVariant, lineHeight: 1.5 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── CAREER JOURNEY ───────────────────────────────────────── */}
+        <section id="experience" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+            <div data-reveal style={{ textAlign: "center", marginBottom: 64 }}>
+              <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// CAREER</div>
+              <h2 className="section-title" style={{ textAlign: "center" }}>Career Journey</h2>
             </div>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 96 }}>
-              {projects.map((p, i) => {
-                const isEven = i % 2 === 0;
+            <div style={{ position: "relative", maxWidth: 760, margin: "0 auto" }}>
+              {/* Vertical line */}
+              <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: 1, background: "linear-gradient(to bottom, transparent, rgba(78,222,163,.3) 10%, rgba(78,222,163,.3) 90%, transparent)", transform: "translateX(-50%)" }} className="hidden md:block" />
+
+              {timeline.map((item, i) => {
+                const isLeft = i % 2 === 0;
                 return (
-                  <div
-                    key={i}
-                    data-reveal
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns:
-                        "repeat(auto-fit, minmax(300px, 1fr))",
-                      gap: 48,
-                      alignItems: "center",
-                    }}
+                  <div key={i} data-reveal
+                    style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr", gap: 0, marginBottom: i < timeline.length - 1 ? 48 : 0, transitionDelay: `${i * 100}ms` }}
+                    className="hidden md:grid"
                   >
-                    {/* Visual – alternates sides on desktop */}
-                    <div
-                      className="project-card-hover"
-                      style={{
-                        order: isEven ? 1 : 2,
-                        borderRadius: 12,
-                        overflow: "hidden",
-                        border: "1px solid rgba(148,163,184,.1)",
-                        position: "relative",
-                      }}
-                    >
-                      <div
-                        style={{
-                          aspectRatio: "16/9",
-                          background: p.bgGradient,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
-                      >
-                        {p.svgContent}
-                      </div>
-                      <div
-                        style={{
-                          position: "absolute",
-                          inset: 0,
-                          background:
-                            "linear-gradient(to top, #051424 0%, transparent 60%)",
-                        }}
-                      />
+                    {/* Left content */}
+                    <div style={{ paddingRight: 32, textAlign: "right", paddingTop: 4 }}>
+                      {isLeft ? (
+                        <div className="card-hover" style={{ background: item.active ? "rgba(78,222,163,.05)" : "rgba(15,23,42,.6)", border: `1px solid ${item.active ? "rgba(78,222,163,.25)" : "rgba(69,70,77,.2)"}`, borderRadius: 8, padding: "20px 24px", display: "inline-block", width: "100%", textAlign: "left" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: item.color, marginBottom: 6 }}>{item.period}</div>
+                          <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 700, color: COLORS.onSurface, marginBottom: 2 }}>{item.company}</div>
+                          <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: item.color, marginBottom: 10, fontWeight: 500 }}>{item.role}</div>
+                          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{item.description}</p>
+                        </div>
+                      ) : null}
                     </div>
 
-                    {/* Text */}
-                    <div style={{ order: isEven ? 2 : 1 }}>
-                      <div
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 12,
-                          letterSpacing: ".05em",
-                          color: COLORS.tertiary,
-                          marginBottom: 16,
-                        }}
-                      >
-                        {p.tag}
-                      </div>
-                      <h3
-                        style={{
-                          fontFamily: "'Inter',sans-serif",
-                          fontSize: 26,
-                          fontWeight: 600,
-                          color: COLORS.onSurface,
-                          lineHeight: 1.25,
-                          marginBottom: 24,
-                        }}
-                      >
-                        {p.title}
-                      </h3>
-                      <p
-                        style={{
-                          color: COLORS.onSurfaceVariant,
-                          fontSize: 16,
-                          lineHeight: 1.7,
-                          marginBottom: 24,
-                        }}
-                      >
-                        {p.desc}
-                      </p>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: 8,
-                          marginBottom: 28,
-                        }}
-                      >
-                        {p.badges.map((b) => (
-                          <span
-                            key={b}
-                            style={{
-                              fontFamily: "'JetBrains Mono',monospace",
-                              fontSize: 11,
-                              padding: "3px 10px",
-                              background: COLORS.surfaceVariant,
-                              borderRadius: 3,
-                              color: COLORS.onSurfaceVariant,
-                            }}
-                          >
-                            {b}
-                          </span>
-                        ))}
-                      </div>
-                      <Link
-                        href="https://github.com/arnold655"
-                        target="_blank"
-                        style={{
-                          display: "inline-flex",
-                          alignItems: "center",
-                          gap: 8,
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 12,
-                          letterSpacing: ".06em",
-                          color: COLORS.secondary,
-                          textDecoration: "none",
-                          padding: "8px 18px",
-                          border: "1px solid rgba(93,230,255,.25)",
-                          borderRadius: 4,
-                          background: "rgba(93,230,255,.04)",
-                          transition: "background .2s, border-color .2s",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background =
-                            "rgba(93,230,255,.10)";
-                          e.currentTarget.style.borderColor =
-                            "rgba(93,230,255,.5)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background =
-                            "rgba(93,230,255,.04)";
-                          e.currentTarget.style.borderColor =
-                            "rgba(93,230,255,.25)";
-                        }}
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        VIEW ON GITHUB
-                      </Link>
+                    {/* Center dot */}
+                    <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 20 }}>
+                      <div style={{ width: 14, height: 14, borderRadius: "50%", background: item.active ? COLORS.tertiary : "rgba(78,222,163,.3)", border: `2px solid ${item.active ? COLORS.tertiary : "rgba(78,222,163,.4)"}`, boxShadow: item.active ? `0 0 12px ${COLORS.tertiary}` : "none", zIndex: 1, flexShrink: 0 }} />
+                    </div>
+
+                    {/* Right content */}
+                    <div style={{ paddingLeft: 32, paddingTop: 4 }}>
+                      {!isLeft ? (
+                        <div className="card-hover" style={{ background: item.active ? "rgba(78,222,163,.05)" : "rgba(15,23,42,.6)", border: `1px solid ${item.active ? "rgba(78,222,163,.25)" : "rgba(69,70,77,.2)"}`, borderRadius: 8, padding: "20px 24px" }}>
+                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: item.color, marginBottom: 6 }}>{item.period}</div>
+                          <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 700, color: COLORS.onSurface, marginBottom: 2 }}>{item.company}</div>
+                          <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: item.color, marginBottom: 10, fontWeight: 500 }}>{item.role}</div>
+                          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{item.description}</p>
+                        </div>
+                      ) : null}
                     </div>
                   </div>
                 );
               })}
+
+              {/* Mobile timeline */}
+              <div className="md:hidden" style={{ display: "flex", flexDirection: "column", gap: 24, position: "relative" }}>
+                <div style={{ position: "absolute", left: 6, top: 0, bottom: 0, width: 1, background: "linear-gradient(to bottom, transparent, rgba(78,222,163,.3) 10%, rgba(78,222,163,.3) 90%, transparent)" }} />
+                {timeline.map((item, i) => (
+                  <div key={i} data-reveal style={{ paddingLeft: 32, transitionDelay: `${i * 80}ms` }}>
+                    <div style={{ position: "absolute", left: 0, width: 13, height: 13, borderRadius: "50%", background: item.active ? COLORS.tertiary : "rgba(78,222,163,.3)", border: `2px solid ${item.active ? COLORS.tertiary : "rgba(78,222,163,.4)"}`, boxShadow: item.active ? `0 0 10px ${COLORS.tertiary}` : "none", marginTop: 20 }} />
+                    <div style={{ background: item.active ? "rgba(78,222,163,.05)" : "rgba(15,23,42,.6)", border: `1px solid ${item.active ? "rgba(78,222,163,.25)" : "rgba(69,70,77,.2)"}`, borderRadius: 8, padding: "18px 20px" }}>
+                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: item.color, marginBottom: 4 }}>{item.period}</div>
+                      <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 17, fontWeight: 700, color: COLORS.onSurface, marginBottom: 2 }}>{item.company}</div>
+                      <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, color: item.color, marginBottom: 8, fontWeight: 500 }}>{item.role}</div>
+                      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* STATS */}
-        <section
-          id="experience"
-          style={{
-            padding: "96px 0",
-            borderTop: "1px solid rgba(69,70,77,.2)",
-            borderBottom: "1px solid rgba(69,70,77,.2)",
-          }}
-        >
+        {/* ── FEATURED PROJECTS ────────────────────────────────────── */}
+        <section id="projects" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-                gap: 32,
-                textAlign: "center",
-              }}
-            >
-              {stats.map((s, i) => (
-                <div
-                  key={i}
-                  data-reveal
-                  style={{
-                    transitionDelay: `${i * 80}ms`,
-                    padding: "24px 0",
-                    borderTop: `2px solid ${i % 2 === 0 ? COLORS.tertiary : COLORS.secondary}`,
-                  }}
+            <div data-reveal style={{ textAlign: "center", marginBottom: 64 }}>
+              <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// WORK</div>
+              <h2 className="section-title" style={{ textAlign: "center" }}>Featured Projects</h2>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, color: COLORS.onSurfaceVariant, maxWidth: 540, margin: "0 auto" }}>Real systems built and deployed in production environments.</p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 28 }}>
+              {projects.map((p, i) => (
+                <div key={i} data-reveal className="card-hover"
+                  style={{ background: "rgba(15,23,42,.7)", border: "1px solid rgba(69,70,77,.2)", borderRadius: 10, overflow: "hidden", transitionDelay: `${i * 80}ms` }}
                 >
-                  <div
-                    style={{
-                      fontFamily: "'Inter',sans-serif",
-                      fontSize: 48,
-                      fontWeight: 700,
-                      letterSpacing: "-0.02em",
-                      color: COLORS.onSurface,
-                      marginBottom: 8,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {s.value}
+                  {/* Visual header */}
+                  <div style={{ aspectRatio: "16/7", background: p.bgGradient, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                    {p.svgContent}
+                    <div style={{ position: "absolute", top: 12, left: 14 }}>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".08em", color: p.accentColor, background: "rgba(5,20,36,.7)", padding: "3px 8px", borderRadius: 3 }}>{p.tag}</span>
+                    </div>
                   </div>
-                  <div
-                    style={{
-                      fontFamily: "'JetBrains Mono',monospace",
-                      fontSize: 10,
-                      letterSpacing: ".08em",
-                      color: COLORS.onSurfaceVariant,
-                    }}
-                  >
-                    {s.label}
+
+                  <div style={{ padding: "24px 24px 28px" }}>
+                    <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 700, color: COLORS.onSurface, lineHeight: 1.3, marginBottom: 20 }}>{p.title}</h3>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
+                      {[{ label: "Problem", text: p.problem, color: "rgba(212,228,250,.5)" }, { label: "Solution", text: p.solution, color: COLORS.secondary }, { label: "Impact", text: p.impact, color: COLORS.tertiary }].map((row) => (
+                        <div key={row.label}>
+                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: row.color, marginBottom: 4 }}>{row.label.toUpperCase()}</div>
+                          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{row.text}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
+                      {p.badges.map((b) => (
+                        <span key={b} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, padding: "3px 9px", background: COLORS.surfaceVariant, borderRadius: 3, color: COLORS.onSurfaceVariant }}>{b}</span>
+                      ))}
+                    </div>
+
+                    <Link href="https://github.com/arnold655" target="_blank"
+                      style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".06em", color: COLORS.secondary, textDecoration: "none", padding: "7px 16px", border: "1px solid rgba(93,230,255,.2)", borderRadius: 4, background: "rgba(93,230,255,.04)", transition: "background .2s, border-color .2s" }}
+                      onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(93,230,255,.10)"; e.currentTarget.style.borderColor = "rgba(93,230,255,.4)"; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(93,230,255,.04)"; e.currentTarget.style.borderColor = "rgba(93,230,255,.2)"; }}
+                    >
+                      <IconGitHub /> VIEW ON GITHUB
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -1623,186 +732,132 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CTA */}
-        <section
-          id="contact"
-          style={{
-            padding: "120px 0",
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)",
-              width: 800,
-              height: 800,
-              background: "rgba(78,222,163,.04)",
-              filter: "blur(120px)",
-              borderRadius: "50%",
-              zIndex: -1,
-            }}
-          />
-          <div
-            style={{
-              maxWidth: 1200,
-              margin: "0 auto",
-              padding: "0 24px",
-              textAlign: "center",
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontWeight: 700,
-                letterSpacing: "-0.02em",
-                lineHeight: 1.1,
-                color: COLORS.onSurface,
-                marginBottom: 24,
-                fontSize: "clamp(32px, 5vw, 52px)",
-              }}
-            >
-              Ready to Architect the Future?
-            </h2>
-            <p
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: 18,
-                lineHeight: 1.6,
-                color: COLORS.onSurfaceVariant,
-                maxWidth: 600,
-                margin: "0 auto 48px",
-              }}
-            >
-              I am currently open to high-impact roles and technical advisory
-              for AI-driven organizations. Let's discuss how we can scale your
-              intelligence infrastructure.
-            </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: 24,
-              }}
-            >
-              <Link
-                href="https://www.linkedin.com/in/arnold-kumar-m-bb6012241"
-                target="_blank"
-                style={{
-                  background: COLORS.secondary,
-                  color: COLORS.onPrimaryFixed,
-                  fontWeight: 700,
-                  padding: "16px 40px",
-                  borderRadius: 4,
-                  fontSize: 16,
-                  textDecoration: "none",
-                  transition: "transform .2s",
-                  display: "inline-block",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.transform = "scale(1.04)")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.transform = "scale(1)")
-                }
+        {/* ── TECH STACK ───────────────────────────────────────────── */}
+        <section id="skills" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)", background: "rgba(5,20,36,.5)" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+            <div data-reveal style={{ textAlign: "center", marginBottom: 60 }}>
+              <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// TECHNOLOGIES</div>
+              <h2 className="section-title" style={{ textAlign: "center" }}>Tech Stack</h2>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20 }}>
+              {techStack.map((group, i) => (
+                <div key={i} data-reveal
+                  style={{ background: "rgba(15,23,42,.7)", border: "1px solid rgba(69,70,77,.2)", borderRadius: 8, padding: "22px 20px", transitionDelay: `${i * 60}ms` }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 16, paddingBottom: 12, borderBottom: "1px solid rgba(69,70,77,.2)" }}>
+                    <div style={{ width: 6, height: 6, borderRadius: "50%", background: group.color, boxShadow: `0 0 6px ${group.color}`, flexShrink: 0 }} />
+                    <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: group.color }}>{group.group.toUpperCase()}</div>
+                  </div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                    {group.items.map((item) => (
+                      <span key={item} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, padding: "4px 9px", background: "rgba(39,54,71,.6)", border: "1px solid rgba(69,70,77,.3)", borderRadius: 3, color: COLORS.onSurfaceVariant }}>{item}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CERTIFICATIONS ───────────────────────────────────────── */}
+        <section id="certifications" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)" }}>
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
+            <div data-reveal style={{ textAlign: "center", marginBottom: 60 }}>
+              <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// CREDENTIALS</div>
+              <h2 className="section-title" style={{ textAlign: "center" }}>Certifications</h2>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20, maxWidth: 900, margin: "0 auto" }}>
+              {certifications.map((cert, i) => (
+                <div key={i} data-reveal className="card-hover"
+                  style={{ background: "rgba(15,23,42,.7)", border: `1px solid rgba(69,70,77,.2)`, borderRadius: 8, padding: "24px", position: "relative", overflow: "hidden", transitionDelay: `${i * 80}ms` }}
+                >
+                  <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${cert.color}, transparent)` }} />
+                  <div style={{ display: "flex", alignItems: "flex-start", gap: 16 }}>
+                    <div style={{ width: 44, height: 44, borderRadius: 6, background: `rgba(${cert.color === COLORS.secondary ? "93,230,255" : cert.color === "#50e6ff" ? "80,230,255" : cert.color === "#a78bfa" ? "167,139,250" : "78,222,163"},.08)`, border: `1px solid ${cert.color}30`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, color: cert.color, letterSpacing: ".05em", fontWeight: 700 }}>{cert.abbr}</span>
+                    </div>
+                    <div>
+                      <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, fontWeight: 600, color: COLORS.onSurface, lineHeight: 1.4, marginBottom: 6 }}>{cert.name}</div>
+                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".06em", color: cert.color }}>{cert.issuer}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── CONTACT ──────────────────────────────────────────────── */}
+        <section id="contact" style={{ padding: "100px 0", borderTop: "1px solid rgba(69,70,77,.15)", position: "relative", overflow: "hidden" }}>
+          <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, background: "rgba(78,222,163,.03)", filter: "blur(100px)", borderRadius: "50%", zIndex: 0 }} />
+          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", position: "relative", zIndex: 1 }}>
+            <div data-reveal style={{ textAlign: "center", marginBottom: 60 }}>
+              <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// GET IN TOUCH</div>
+              <h2 className="section-title" style={{ textAlign: "center" }}>Let's Build Something Intelligent</h2>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, color: COLORS.onSurfaceVariant, maxWidth: 520, margin: "0 auto" }}>
+                I am open to Senior AI/ML Engineer roles, technical advisory, and high-impact Generative AI projects.
+              </p>
+            </div>
+
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16, maxWidth: 860, margin: "0 auto" }}>
+              {[
+                { label: "Email", value: "arnoldkumar0524@gmail.com", icon: <IconMail />, href: "mailto:arnoldkumar0524@gmail.com", color: COLORS.tertiary },
+                { label: "Phone", value: "+1 (940) 843-1390", icon: <IconPhone />, href: "tel:+19408431390", color: COLORS.secondary },
+                { label: "LinkedIn", value: "arnold-kumar-m", icon: <IconLinkedIn />, href: "https://www.linkedin.com/in/arnold-kumar-m-bb6012241", color: COLORS.secondary },
+                { label: "GitHub", value: "arnold655", icon: <IconGitHub />, href: "https://github.com/arnold655", color: COLORS.tertiary },
+              ].map((item) => (
+                <a key={item.label} href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined}
+                  className="card-hover"
+                  style={{ background: "rgba(15,23,42,.7)", border: "1px solid rgba(69,70,77,.2)", borderRadius: 8, padding: "22px 20px", textDecoration: "none", display: "flex", flexDirection: "column", gap: 10 }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div style={{ color: item.color }}>{item.icon}</div>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".1em", color: item.color }}>{item.label.toUpperCase()}</span>
+                  </div>
+                  <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, color: COLORS.onSurface, fontWeight: 500, wordBreak: "break-word" }}>{item.value}</div>
+                </a>
+              ))}
+            </div>
+
+            <div data-reveal style={{ textAlign: "center", marginTop: 48, display: "flex", justifyContent: "center", gap: 16, flexWrap: "wrap" }}>
+              <a href="/resume.pdf" download
+                style={{ background: COLORS.secondary, color: COLORS.onPrimaryFixed, fontWeight: 700, padding: "14px 36px", borderRadius: 4, fontSize: 15, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, transition: "opacity .2s" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.opacity = ".85")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.opacity = "1")}
               >
-                Schedule Technical Deep-Dive
-              </Link>
-              <a
-                href="/resume.pdf"
-                download
-                style={{
-                  background: "transparent",
-                  color: COLORS.onSurface,
-                  fontWeight: 700,
-                  padding: "16px 40px",
-                  borderRadius: 4,
-                  fontSize: 16,
-                  textDecoration: "none",
-                  border: `1px solid ${COLORS.outlineVariant}`,
-                  transition: "background .2s",
-                  display: "inline-block",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = COLORS.surfaceVariant)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "transparent")
-                }
-              >
-                Download CV
+                <IconDownload /> Download Resume
               </a>
+              <Link href="https://www.linkedin.com/in/arnold-kumar-m-bb6012241" target="_blank"
+                style={{ background: "transparent", color: COLORS.onSurface, fontWeight: 600, padding: "14px 36px", borderRadius: 4, fontSize: 15, textDecoration: "none", border: `1px solid rgba(69,70,77,.4)`, display: "inline-flex", alignItems: "center", gap: 8, transition: "border-color .2s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(93,230,255,.4)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(69,70,77,.4)")}
+              >
+                <IconLinkedIn /> Connect on LinkedIn
+              </Link>
             </div>
           </div>
         </section>
       </main>
 
       {/* FOOTER */}
-      <footer
-        style={{
-          background: COLORS.background,
-          borderTop: "1px solid rgba(69,70,77,.2)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "64px 24px",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 32,
-          }}
-        >
+      <footer style={{ background: COLORS.background, borderTop: "1px solid rgba(69,70,77,.2)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "40px 24px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: 24 }}>
           <div>
-            <div
-              style={{
-                fontFamily: "'Inter',sans-serif",
-                fontSize: 18,
-                fontWeight: 700,
-                color: COLORS.onSurface,
-                marginBottom: 8,
-              }}
-            >
-              Arnold
+            <div style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, fontWeight: 700, color: COLORS.onSurface, marginBottom: 6 }}>
+              Arnold<span className="gradient-text">.</span>
             </div>
-            <div
-              style={{
-                fontFamily: "'JetBrains Mono',monospace",
-                fontSize: 11,
-                letterSpacing: ".03em",
-                color: COLORS.onSurfaceVariant,
-              }}
-            >
-              © 2024 Arnold | AI/ML Systems Architect. Built with Precision.
+            <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".03em", color: COLORS.onSurfaceVariant }}>
+              © 2025 Arnold Kumar M · Senior AI/ML Engineer
             </div>
           </div>
-          <div style={{ display: "flex", gap: 32 }}>
-            {footerLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                style={{
-                  fontFamily: "'JetBrains Mono',monospace",
-                  fontSize: 12,
-                  letterSpacing: ".05em",
-                  color: COLORS.onSurfaceVariant,
-                  textDecoration: "none",
-                  transition: "color .3s",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = COLORS.tertiary)
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = COLORS.onSurfaceVariant)
-                }
+          <div style={{ display: "flex", gap: 24 }}>
+            {[{ label: "GitHub", href: "https://github.com/arnold655" }, { label: "LinkedIn", href: "https://www.linkedin.com/in/arnold-kumar-m-bb6012241" }].map((l) => (
+              <Link key={l.label} href={l.href} target="_blank"
+                style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 12, letterSpacing: ".05em", color: COLORS.onSurfaceVariant, textDecoration: "none", transition: "color .3s" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = COLORS.tertiary)}
+                onMouseLeave={(e) => (e.currentTarget.style.color = COLORS.onSurfaceVariant)}
               >
                 {l.label}
               </Link>
