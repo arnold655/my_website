@@ -240,16 +240,17 @@ export default function Home() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
         *, *::before, *::after { box-sizing: border-box; }
+        html { background-color: #050816; }
         body {
-          background-color: #050816;
+          background: transparent;
           color: #FFFFFF;
           font-family: 'Inter', sans-serif;
           margin: 0;
           cursor: none;
         }
         .grid-pattern {
-          background-image: radial-gradient(rgba(168,85,247,0.06) 1px, transparent 1px);
-          background-size: 32px 32px;
+          background-image: radial-gradient(rgba(168,85,247,0.04) 1px, transparent 1px);
+          background-size: 36px 36px;
         }
         @media (pointer: fine) {
           a, button, [data-interactive] { cursor: none !important; }
@@ -336,6 +337,24 @@ export default function Home() {
 
       <div id="cursor-dot" className="hidden md:block" />
       <div id="cursor-ring" className="hidden md:block" />
+
+      {/* ── GLOBAL COSMIC BACKGROUND ─────────────────────────────── */}
+      <div aria-hidden="true" style={{ position: "fixed", inset: 0, zIndex: -1, pointerEvents: "none", overflow: "hidden", background: "#050816" }}>
+        {/* Nebula cloud — top right, primary purple */}
+        <div style={{ position: "absolute", top: "-15%", right: "-10%", width: "65%", height: "70%", background: "radial-gradient(ellipse at center, rgba(168,85,247,.14) 0%, rgba(88,28,135,.07) 45%, transparent 75%)" }} />
+        {/* Nebula cloud — mid left, deep violet */}
+        <div style={{ position: "absolute", top: "25%", left: "-15%", width: "60%", height: "65%", background: "radial-gradient(ellipse at center, rgba(88,28,135,.16) 0%, rgba(49,10,80,.08) 50%, transparent 75%)" }} />
+        {/* Nebula cloud — lower right, soft lavender */}
+        <div style={{ position: "absolute", bottom: "5%", right: "0%", width: "55%", height: "55%", background: "radial-gradient(ellipse at center, rgba(192,132,252,.09) 0%, rgba(109,40,217,.05) 50%, transparent 75%)" }} />
+        {/* Nebula cloud — lower center, indigo */}
+        <div style={{ position: "absolute", bottom: "20%", left: "25%", width: "50%", height: "50%", background: "radial-gradient(ellipse at center, rgba(139,92,246,.08) 0%, transparent 70%)" }} />
+        {/* Nebula cloud — upper left hint */}
+        <div style={{ position: "absolute", top: "5%", left: "5%", width: "35%", height: "40%", background: "radial-gradient(ellipse at center, rgba(168,85,247,.06) 0%, transparent 70%)" }} />
+        {/* Star field — layer 1 (bright sparse) */}
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(1.2px 1.2px at 12% 18%, rgba(255,255,255,.75) 0%, transparent 100%), radial-gradient(1px 1px at 28% 6%, rgba(255,255,255,.6) 0%, transparent 100%), radial-gradient(1.2px 1.2px at 43% 32%, rgba(255,255,255,.7) 0%, transparent 100%), radial-gradient(1px 1px at 58% 14%, rgba(255,255,255,.55) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 72% 8%, rgba(255,255,255,.8) 0%, transparent 100%), radial-gradient(1px 1px at 88% 26%, rgba(255,255,255,.6) 0%, transparent 100%), radial-gradient(1.2px 1.2px at 5% 42%, rgba(255,255,255,.65) 0%, transparent 100%), radial-gradient(1px 1px at 93% 48%, rgba(255,255,255,.5) 0%, transparent 100%), radial-gradient(1.5px 1.5px at 36% 56%, rgba(255,255,255,.7) 0%, transparent 100%), radial-gradient(1px 1px at 67% 62%, rgba(255,255,255,.55) 0%, transparent 100%)" }} />
+        {/* Star field — layer 2 (dim dense) */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.55, backgroundImage: "radial-gradient(1px 1px at 7% 72%, rgba(255,255,255,.5) 0%, transparent 100%), radial-gradient(1px 1px at 19% 85%, rgba(255,255,255,.4) 0%, transparent 100%), radial-gradient(1.2px 1.2px at 32% 78%, rgba(255,255,255,.55) 0%, transparent 100%), radial-gradient(1px 1px at 48% 90%, rgba(255,255,255,.4) 0%, transparent 100%), radial-gradient(1px 1px at 63% 76%, rgba(255,255,255,.45) 0%, transparent 100%), radial-gradient(1.2px 1.2px at 77% 83%, rgba(255,255,255,.6) 0%, transparent 100%), radial-gradient(1px 1px at 91% 70%, rgba(255,255,255,.4) 0%, transparent 100%), radial-gradient(1px 1px at 23% 52%, rgba(200,180,255,.45) 0%, transparent 100%), radial-gradient(1px 1px at 54% 44%, rgba(200,180,255,.4) 0%, transparent 100%), radial-gradient(1.2px 1.2px at 81% 38%, rgba(200,180,255,.5) 0%, transparent 100%), radial-gradient(1px 1px at 15% 96%, rgba(255,255,255,.35) 0%, transparent 100%), radial-gradient(1px 1px at 70% 94%, rgba(255,255,255,.35) 0%, transparent 100%)" }} />
+      </div>
 
       {/* ── NAV ──────────────────────────────────────────────────── */}
       <nav
@@ -603,7 +622,7 @@ export default function Home() {
         </section>
 
         {/* ── CURRENT ROLE ─────────────────────────────────────────── */}
-        <section id="current-role" style={{ padding: "80px 0", background: "rgba(5,8,22,.6)", borderTop: "1px solid rgba(59,47,107,.25)" }}>
+        <section id="current-role" style={{ padding: "80px 0", borderTop: "1px solid rgba(59,47,107,.25)" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
             <div data-reveal style={{ maxWidth: 800, margin: "0 auto" }}>
               <div style={{ textAlign: "center", marginBottom: 40 }}>
@@ -778,7 +797,7 @@ export default function Home() {
         </section>
 
         {/* ── TECH STACK ───────────────────────────────────────────── */}
-        <section id="skills" style={{ padding: "100px 0", borderTop: "1px solid rgba(59,47,107,.25)", background: "rgba(5,8,22,.5)" }}>
+        <section id="skills" style={{ padding: "100px 0", borderTop: "1px solid rgba(59,47,107,.25)" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
             <div data-reveal style={{ textAlign: "center", marginBottom: 60 }}>
               <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// TECHNOLOGIES</div>
