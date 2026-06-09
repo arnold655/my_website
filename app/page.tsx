@@ -53,6 +53,7 @@ const COLORS = {
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -119,66 +120,73 @@ export default function Home() {
 
   const projects = [
     {
-      tag: "NETWORK INTELLIGENCE",
-      title: "Network Operations RAG Agent",
+      tag: "GENERATIVE AI · NETWORK",
+      title: "Enterprise Network Digital Twin Intelligence Platform",
+      company: "Forward Networks",
+      companyColor: COLORS.tertiary,
       accentColor: COLORS.tertiary,
-      problem: "Network ops teams drowning in telemetry data with no fast way to query infrastructure state or diagnose incidents.",
-      solution: "Agentic RAG system ingesting network telemetry and runbooks, enabling natural-language querying, automated root-cause analysis, and on-call triage at scale.",
-      impact: "Reduced mean-time-to-resolution for network incidents and eliminated manual runbook lookups during on-call rotations.",
-      badges: ["LangChain", "LangGraph", "RAG", "Vector DB", "Python", "FastAPI"],
+      summary: "Designed and deployed an AI-powered intelligence platform enabling natural language analysis of network topology, device configurations, security posture, and infrastructure dependencies. Built enterprise RAG pipelines with hybrid retrieval, multi-agent orchestration, and LLM guardrails to provide network insights grounded in the Forward Enterprise Digital Twin.",
+      tech: ["LangChain", "LangGraph", "RAG", "Pinecone", "Azure OpenAI", "FastAPI"],
+      challenge: "Ensuring AI-generated responses remained grounded in verified network state data while supporting complex enterprise-scale investigations.",
       svgContent: (
-        <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          <circle cx="70" cy="50" r="10" fill="rgba(192,132,252,.15)" stroke="#C084FC" strokeWidth="1.5" />
-          <text x="70" y="54" textAnchor="middle" fontSize="8" fill="#C084FC" fontFamily="monospace">RAG</text>
-          {[{ cx: 20, cy: 20 }, { cx: 120, cy: 20 }, { cx: 15, cy: 70 }, { cx: 125, cy: 70 }, { cx: 70, cy: 90 }].map((n, i) => (
+        <svg width="150" height="110" viewBox="0 0 150 110" fill="none">
+          <circle cx="75" cy="55" r="12" fill="rgba(192,132,252,.12)" stroke="#C084FC" strokeWidth="1.5" />
+          <text x="75" y="59" textAnchor="middle" fontSize="7" fill="#C084FC" fontFamily="monospace">TWIN</text>
+          {[{ cx: 22, cy: 22 }, { cx: 128, cy: 22 }, { cx: 15, cy: 75 }, { cx: 135, cy: 75 }, { cx: 75, cy: 98 }, { cx: 42, cy: 98 }, { cx: 108, cy: 98 }].map((n, i) => (
             <g key={i}>
-              <line x1="70" y1="50" x2={n.cx} y2={n.cy} stroke="#C084FC" strokeWidth="1" opacity=".3" strokeDasharray="3 3" />
-              <circle cx={n.cx} cy={n.cy} r="5" fill="rgba(192,132,252,.2)" stroke="#C084FC" strokeWidth="1" opacity=".7" />
+              <line x1="75" y1="55" x2={n.cx} y2={n.cy} stroke="#C084FC" strokeWidth="0.8" opacity=".25" strokeDasharray="3 3" />
+              <circle cx={n.cx} cy={n.cy} r="5" fill="rgba(192,132,252,.15)" stroke="#C084FC" strokeWidth="1" opacity=".7" />
             </g>
           ))}
-          <circle cx="70" cy="50" r="18" stroke="#A855F7" strokeWidth="0.5" opacity=".3" />
-          <circle cx="70" cy="50" r="26" stroke="#A855F7" strokeWidth="0.5" opacity=".15" />
+          <circle cx="75" cy="55" r="22" stroke="#A855F7" strokeWidth="0.5" opacity=".25" />
+          <circle cx="75" cy="55" r="34" stroke="#A855F7" strokeWidth="0.5" opacity=".12" />
+          <circle cx="75" cy="55" r="46" stroke="#A855F7" strokeWidth="0.5" opacity=".06" />
         </svg>
       ),
       bgGradient: "linear-gradient(135deg, #0d0a1e 0%, #1a0a2e 60%, #050816 100%)",
     },
     {
-      tag: "HEALTHCARE AI",
-      title: "Healthcare Ticket Triage & Fraud Analytics Platform",
-      accentColor: COLORS.secondary,
-      problem: "High-volume support tickets required manual review, and billing fraud patterns were surfacing too late to act on.",
-      solution: "End-to-end platform combining NLP-based ticket classification and ML-driven fraud detection for real-time anomaly detection in healthcare operations.",
-      impact: "Reduced manual review time for support tickets and surfaced anomalous billing patterns in real time, improving operational throughput.",
-      badges: ["NLP", "XGBoost", "Apache Spark", "Azure", "Python", "scikit-learn"],
+      tag: "GENERATIVE AI · HEALTHCARE",
+      title: "Clinical Knowledge Assistant for Provider Support Teams",
+      company: "UnitedHealth Group",
+      companyColor: "#818cf8",
+      accentColor: "#818cf8",
+      summary: "Built a Generative AI-powered knowledge assistant that enables provider support teams to access healthcare policies, claims procedures, benefit guidelines, and operational documentation through natural language conversations. Implemented enterprise RAG architecture using Azure AI Search, LangChain, and Azure OpenAI.",
+      tech: ["Azure OpenAI", "Azure AI Search", "LangChain", "RAG", "Azure Databricks"],
+      challenge: "Maintaining response accuracy, compliance, and security across large volumes of frequently changing healthcare documentation.",
       svgContent: (
-        <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          <rect x="25" y="30" width="55" height="38" rx="4" fill="rgba(168,85,247,.06)" stroke="#A855F7" strokeWidth="1" opacity=".5" />
-          <rect x="30" y="25" width="55" height="38" rx="4" fill="rgba(168,85,247,.08)" stroke="#A855F7" strokeWidth="1" opacity=".6" />
-          <rect x="35" y="20" width="55" height="38" rx="4" fill="rgba(168,85,247,.1)" stroke="#A855F7" strokeWidth="1.5" opacity=".8" />
-          {[0, 1, 2].map((i) => (
-            <line key={i} x1="42" y1={28 + i * 7} x2={72 - i * 6} y2={28 + i * 7} stroke="#A855F7" strokeWidth="1.2" opacity=".5" />
+        <svg width="150" height="110" viewBox="0 0 150 110" fill="none">
+          <rect x="30" y="28" width="62" height="48" rx="5" fill="rgba(129,140,248,.07)" stroke="#818cf8" strokeWidth="1.2" opacity=".6" />
+          <rect x="36" y="22" width="62" height="48" rx="5" fill="rgba(129,140,248,.09)" stroke="#818cf8" strokeWidth="1.2" opacity=".75" />
+          <rect x="42" y="16" width="62" height="48" rx="5" fill="rgba(129,140,248,.11)" stroke="#818cf8" strokeWidth="1.5" />
+          {[0, 1, 2, 3].map((i) => (
+            <line key={i} x1="51" y1={24 + i * 9} x2={85 - i * 4} y2={24 + i * 9} stroke="#818cf8" strokeWidth="1.1" opacity=".45" />
           ))}
-          <path d="M105 22 L118 28 L118 42 C118 50 105 55 105 55 C105 55 92 50 92 42 L92 28 Z" fill="rgba(192,132,252,.1)" stroke="#C084FC" strokeWidth="1.2" opacity=".8" />
-          <text x="105" y="42" textAnchor="middle" fontSize="9" fill="#C084FC" fontFamily="monospace">✓</text>
+          <path d="M118 18 L133 25 L133 42 C133 52 118 58 118 58 C118 58 103 52 103 42 L103 25 Z" fill="rgba(129,140,248,.1)" stroke="#818cf8" strokeWidth="1.2" opacity=".8" />
+          <line x1="111" y1="38" x2="125" y2="38" stroke="#818cf8" strokeWidth="1.3" opacity=".7" />
+          <line x1="118" y1="31" x2="118" y2="45" stroke="#818cf8" strokeWidth="1.3" opacity=".7" />
         </svg>
       ),
-      bgGradient: "linear-gradient(135deg, #0d0a1e 0%, #150826 60%, #050816 100%)",
+      bgGradient: "linear-gradient(135deg, #0d0a1e 0%, #0f1030 60%, #050816 100%)",
     },
     {
-      tag: "FINTECH ML",
+      tag: "MACHINE LEARNING · FINTECH",
       title: "Real-Time Credit Risk Scoring Engine",
-      accentColor: COLORS.tertiary,
-      problem: "Legacy batch credit scoring was too slow for real-time lending decisions and lacked explainability for regulatory requirements.",
-      solution: "Low-latency credit risk pipeline processing live transaction streams with automated feature engineering, model retraining triggers, and explainability outputs.",
-      impact: "Enabled real-time lending decisions with regulatory-compliant model explanations and automated retraining on data drift.",
-      badges: ["Kafka", "MLflow", "Python", "AWS", "XGBoost", "SHAP"],
+      company: "Bank of America",
+      companyColor: COLORS.secondary,
+      accentColor: COLORS.secondary,
+      summary: "Led the modernization of credit risk scoring from batch processing to a near-real-time streaming architecture. Integrated machine learning models with Kafka and AWS Kinesis pipelines to support faster lending decisions and scalable financial risk assessment.",
+      tech: ["XGBoost", "Kafka", "AWS Kinesis", "PySpark", "Airflow"],
+      challenge: "Addressing class imbalance and optimizing decision thresholds to align model predictions with business risk tolerance.",
       svgContent: (
-        <svg width="140" height="100" viewBox="0 0 140 100" fill="none">
-          {[{ x: 18, h: 30, o: 0.4 }, { x: 34, h: 45, o: 0.5 }, { x: 50, h: 35, o: 0.55 }, { x: 66, h: 55, o: 0.65 }, { x: 82, h: 42, o: 0.7 }, { x: 98, h: 62, o: 0.85 }, { x: 114, h: 50, o: 1 }].map((b, i) => (
-            <rect key={i} x={b.x} y={80 - b.h} width="12" height={b.h} rx="2" fill={`rgba(192,132,252,${b.o * 0.3})`} stroke="#C084FC" strokeWidth="1" opacity={b.o} />
+        <svg width="150" height="110" viewBox="0 0 150 110" fill="none">
+          {[{ x: 14, h: 28 }, { x: 32, h: 42 }, { x: 50, h: 34 }, { x: 68, h: 56 }, { x: 86, h: 44 }, { x: 104, h: 65 }, { x: 122, h: 50 }].map((b, i) => (
+            <rect key={i} x={b.x} y={88 - b.h} width="14" height={b.h} rx="2"
+              fill={`rgba(168,85,247,${0.08 + i * 0.04})`}
+              stroke="#A855F7" strokeWidth="1" opacity={0.4 + i * 0.1} />
           ))}
-          <polyline points="24,65 40,50 56,58 72,38 88,46 104,28 120,36" stroke="#A855F7" strokeWidth="1.5" fill="none" opacity=".6" strokeDasharray="3 2" />
-          <line x1="12" y1="80" x2="128" y2="80" stroke="#C084FC" strokeWidth="0.8" opacity=".3" />
+          <polyline points="21,72 39,58 57,65 75,44 93,52 111,33 129,42" stroke="#C084FC" strokeWidth="1.5" fill="none" opacity=".6" strokeDasharray="3 2" />
+          <line x1="8" y1="88" x2="142" y2="88" stroke="#A855F7" strokeWidth="0.8" opacity=".25" />
         </svg>
       ),
       bgGradient: "linear-gradient(135deg, #100820 0%, #0d0a1e 60%, #050816 100%)",
@@ -707,50 +715,61 @@ export default function Home() {
             <div data-reveal style={{ textAlign: "center", marginBottom: 64 }}>
               <div className="section-label" style={{ display: "flex", justifyContent: "center" }}>// WORK</div>
               <h2 className="section-title" style={{ textAlign: "center" }}>Featured Projects</h2>
-              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, color: COLORS.onSurfaceVariant, maxWidth: 540, margin: "0 auto" }}>Real systems built and deployed in production environments.</p>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 16, color: COLORS.onSurfaceVariant, maxWidth: 560, margin: "0 auto" }}>
+                Production AI systems built across enterprise network, healthcare, and financial services domains.
+              </p>
             </div>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 28 }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 28 }}>
               {projects.map((p, i) => (
                 <div key={i} data-reveal className="card-hover"
-                  style={{ background: "rgba(26,16,53,.6)", border: "1px solid rgba(59,47,107,.3)", borderRadius: 10, overflow: "hidden", transitionDelay: `${i * 80}ms` }}
+                  style={{ background: "rgba(26,16,53,.6)", border: "1px solid rgba(59,47,107,.3)", borderRadius: 12, overflow: "hidden", display: "flex", flexDirection: "column", transitionDelay: `${i * 80}ms` }}
                 >
-                  <div style={{ aspectRatio: "16/7", background: p.bgGradient, display: "flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                  {/* Visual header */}
+                  <div style={{ aspectRatio: "16/7", background: p.bgGradient, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden" }}>
                     {p.svgContent}
+                    {/* Top accent bar */}
+                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${p.accentColor}, transparent)` }} />
+                    {/* Domain tag */}
                     <div style={{ position: "absolute", top: 12, left: 14 }}>
-                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, letterSpacing: ".08em", color: p.accentColor, background: "rgba(5,8,22,.7)", padding: "3px 8px", borderRadius: 3 }}>{p.tag}</span>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".1em", color: p.accentColor, background: "rgba(5,8,22,.75)", padding: "3px 9px", borderRadius: 3, border: `1px solid ${p.accentColor}30` }}>{p.tag}</span>
+                    </div>
+                    {/* Company badge */}
+                    <div style={{ position: "absolute", bottom: 12, right: 14 }}>
+                      <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".06em", color: p.companyColor, background: "rgba(5,8,22,.8)", padding: "3px 10px", borderRadius: 99, border: `1px solid ${p.companyColor}35` }}>{p.company}</span>
                     </div>
                   </div>
 
-                  <div style={{ padding: "24px 24px 28px" }}>
-                    <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 18, fontWeight: 700, color: COLORS.onSurface, lineHeight: 1.3, marginBottom: 20 }}>{p.title}</h3>
+                  {/* Card body */}
+                  <div style={{ padding: "24px 24px 0", flex: 1, display: "flex", flexDirection: "column" }}>
+                    <h3 style={{ fontFamily: "'Inter',sans-serif", fontSize: 17, fontWeight: 700, color: COLORS.onSurface, lineHeight: 1.35, marginBottom: 12 }}>{p.title}</h3>
 
-                    <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
-                      {[
-                        { label: "Problem", text: p.problem, color: "rgba(233,213,255,.45)" },
-                        { label: "Solution", text: p.solution, color: COLORS.secondary },
-                        { label: "Impact", text: p.impact, color: COLORS.tertiary },
-                      ].map((row) => (
-                        <div key={row.label}>
-                          <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: row.color, marginBottom: 4 }}>{row.label.toUpperCase()}</div>
-                          <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{row.text}</p>
-                        </div>
-                      ))}
+                    <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13.5, lineHeight: 1.7, color: COLORS.onSurfaceVariant, margin: "0 0 18px" }}>{p.summary}</p>
+
+                    {/* Key challenge */}
+                    <div style={{ background: "rgba(59,47,107,.25)", border: "1px solid rgba(59,47,107,.4)", borderRadius: 6, padding: "12px 14px", marginBottom: 18 }}>
+                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: p.accentColor, marginBottom: 5 }}>KEY CHALLENGE</div>
+                      <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 13, lineHeight: 1.6, color: COLORS.onSurfaceVariant, margin: 0 }}>{p.challenge}</p>
                     </div>
 
+                    {/* Tech chips */}
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
-                      {p.badges.map((b) => (
-                        <span key={b} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, padding: "3px 9px", background: COLORS.surfaceVariant, borderRadius: 3, color: COLORS.onSurfaceVariant }}>{b}</span>
+                      {p.tech.map((t) => (
+                        <span key={t} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, padding: "4px 10px", background: `${p.accentColor}10`, border: `1px solid ${p.accentColor}28`, borderRadius: 4, color: p.accentColor }}>{t}</span>
                       ))}
                     </div>
+                  </div>
 
-                    <Link href="https://github.com/arnold655" target="_blank"
-                      style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: "'JetBrains Mono',monospace", fontSize: 11, letterSpacing: ".06em", color: COLORS.secondary, textDecoration: "none", padding: "7px 16px", border: "1px solid rgba(168,85,247,.25)", borderRadius: 4, background: "rgba(168,85,247,.06)", transition: "background .2s, border-color .2s" }}
-                      onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(168,85,247,.14)"; e.currentTarget.style.borderColor = "rgba(168,85,247,.45)"; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(168,85,247,.06)"; e.currentTarget.style.borderColor = "rgba(168,85,247,.25)"; }}
+                  {/* Card footer */}
+                  <div style={{ padding: "0 24px 24px", borderTop: "1px solid rgba(59,47,107,.25)", paddingTop: 16, marginTop: "auto" }}>
+                    <button
+                      onClick={() => setActiveModal(i)}
+                      style={{ width: "100%", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: "'Inter',sans-serif", fontWeight: 600, fontSize: 13, letterSpacing: ".03em", color: p.accentColor, padding: "10px 20px", border: `1px solid ${p.accentColor}35`, borderRadius: 6, background: `${p.accentColor}08`, cursor: "pointer", transition: "background .2s, border-color .2s, box-shadow .2s" }}
+                      onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = `${p.accentColor}18`; (e.currentTarget as HTMLElement).style.borderColor = `${p.accentColor}60`; (e.currentTarget as HTMLElement).style.boxShadow = `0 0 14px ${p.accentColor}18`; }}
+                      onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = `${p.accentColor}08`; (e.currentTarget as HTMLElement).style.borderColor = `${p.accentColor}35`; (e.currentTarget as HTMLElement).style.boxShadow = "none"; }}
                     >
-                      <IconGitHub /> VIEW ON GITHUB
-                    </Link>
+                      View Details <IconArrowRight />
+                    </button>
                   </div>
                 </div>
               ))}
@@ -866,6 +885,70 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* ── PROJECT DETAIL MODAL ─────────────────────────────────── */}
+      {activeModal !== null && (() => {
+        const p = projects[activeModal];
+        return (
+          <div
+            onClick={() => setActiveModal(null)}
+            style={{ position: "fixed", inset: 0, zIndex: 200, background: "rgba(5,8,22,.85)", backdropFilter: "blur(12px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 16px" }}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{ background: "rgba(18,13,40,.97)", border: `1px solid ${p.accentColor}30`, borderRadius: 14, width: "100%", maxWidth: 680, maxHeight: "88vh", overflowY: "auto", position: "relative", boxShadow: `0 0 60px ${p.accentColor}15, 0 32px 80px rgba(0,0,0,.7)` }}
+            >
+              {/* Top accent */}
+              <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg, ${p.accentColor}, transparent)`, borderRadius: "14px 14px 0 0" }} />
+
+              {/* Close button */}
+              <button
+                onClick={() => setActiveModal(null)}
+                style={{ position: "absolute", top: 16, right: 16, background: "rgba(59,47,107,.4)", border: "1px solid rgba(59,47,107,.5)", borderRadius: "50%", width: 32, height: 32, display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.onSurfaceVariant, cursor: "pointer", zIndex: 1, transition: "background .2s" }}
+                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(59,47,107,.8)")}
+                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(59,47,107,.4)")}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+
+              <div style={{ padding: "32px 32px 32px" }}>
+                {/* Header */}
+                <div style={{ marginBottom: 24 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: p.accentColor, background: `${p.accentColor}12`, padding: "3px 10px", borderRadius: 3, border: `1px solid ${p.accentColor}30` }}>{p.tag}</span>
+                    <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".06em", color: p.companyColor, background: `${p.companyColor}10`, padding: "3px 10px", borderRadius: 99, border: `1px solid ${p.companyColor}30` }}>{p.company}</span>
+                  </div>
+                  <h2 style={{ fontFamily: "'Inter',sans-serif", fontSize: "clamp(18px, 3vw, 24px)", fontWeight: 700, color: COLORS.onSurface, lineHeight: 1.3, marginBottom: 0, paddingRight: 40 }}>{p.title}</h2>
+                </div>
+
+                <div style={{ width: 40, height: 1, background: `linear-gradient(90deg, ${p.accentColor}, transparent)`, marginBottom: 24 }} />
+
+                {/* Summary */}
+                <div style={{ marginBottom: 24 }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: p.accentColor, marginBottom: 8 }}>PROJECT OVERVIEW</div>
+                  <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 15, lineHeight: 1.75, color: COLORS.onSurfaceVariant, margin: 0 }}>{p.summary}</p>
+                </div>
+
+                {/* Key challenge */}
+                <div style={{ background: `${p.accentColor}08`, border: `1px solid ${p.accentColor}25`, borderRadius: 8, padding: "18px 20px", marginBottom: 24 }}>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: p.accentColor, marginBottom: 8 }}>KEY CHALLENGE</div>
+                  <p style={{ fontFamily: "'Inter',sans-serif", fontSize: 14, lineHeight: 1.7, color: COLORS.onSurfaceVariant, margin: 0 }}>{p.challenge}</p>
+                </div>
+
+                {/* Technologies */}
+                <div>
+                  <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 9, letterSpacing: ".12em", color: p.accentColor, marginBottom: 12 }}>TECHNOLOGIES USED</div>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {p.tech.map((t) => (
+                      <span key={t} style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, padding: "6px 14px", background: `${p.accentColor}10`, border: `1px solid ${p.accentColor}30`, borderRadius: 5, color: p.accentColor }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── FOOTER ───────────────────────────────────────────────── */}
       <footer style={{ background: COLORS.background, borderTop: "1px solid rgba(59,47,107,.25)" }}>
