@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SplineScene } from "@/components/ui/splite";
 import { Spotlight } from "@/components/ui/spotlight";
+import { TextScramble } from "@/components/ui/text-scramble";
 
 const IconArrowRight = () => (
   <svg
@@ -468,6 +469,10 @@ export default function Home() {
           body { cursor: auto; }
           #cursor-dot, #cursor-ring { display: none; }
         }
+        @keyframes float-particle {
+          0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+          40% { opacity: 0.8; transform: translateY(-30px) scale(1.2); }
+        }
       `}</style>
 
       <div id="cursor-dot" className="hidden md:block" />
@@ -636,18 +641,29 @@ export default function Home() {
           ref={heroRef}
           style={{
             position: "relative",
-            paddingTop: 160,
-            paddingBottom: 120,
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            paddingTop: 80,
+            paddingBottom: 80,
             overflow: "hidden",
           }}
         >
-          <div style={{ position: "absolute", inset: 0, zIndex: -1 }}>
+          {/* Background layers */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          >
             <div
               style={{
                 position: "absolute",
                 inset: 0,
                 background:
-                  "radial-gradient(circle at 50% 50%, rgba(78,222,163,.08) 0%, transparent 50%)",
+                  "radial-gradient(ellipse at 75% 50%, rgba(93,230,255,.07) 0%, transparent 55%)",
               }}
             />
             <div
@@ -655,439 +671,440 @@ export default function Home() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "linear-gradient(to bottom, #051424 0%, transparent 30%, transparent 70%, #051424 100%)",
+                  "radial-gradient(ellipse at 25% 60%, rgba(78,222,163,.06) 0%, transparent 50%)",
               }}
             />
             <div
               style={{
                 position: "absolute",
                 inset: 0,
-                background: "rgba(5,20,36,.6)",
+                background:
+                  "linear-gradient(125deg, transparent 35%, rgba(93,230,255,.015) 50%, transparent 65%)",
               }}
             />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(115deg, transparent 45%, rgba(78,222,163,.012) 55%, transparent 70%)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage:
+                  "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px)",
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background:
+                  "linear-gradient(to bottom, #051424 0%, transparent 18%, transparent 82%, #051424 100%)",
+              }}
+            />
+            {[
+              {
+                left: "12%",
+                top: "28%",
+                delay: "0s",
+                dur: "7s",
+                color: COLORS.tertiary,
+              },
+              {
+                left: "62%",
+                top: "18%",
+                delay: "2.5s",
+                dur: "9s",
+                color: COLORS.secondary,
+              },
+              {
+                left: "82%",
+                top: "58%",
+                delay: "1.2s",
+                dur: "6s",
+                color: COLORS.secondary,
+              },
+              {
+                left: "38%",
+                top: "72%",
+                delay: "3.5s",
+                dur: "8s",
+                color: COLORS.tertiary,
+              },
+            ].map((p, i) => (
+              <div
+                key={i}
+                style={{
+                  position: "absolute",
+                  left: p.left,
+                  top: p.top,
+                  width: 3,
+                  height: 3,
+                  borderRadius: "50%",
+                  background: p.color,
+                  boxShadow: `0 0 6px ${p.color}`,
+                  animation: `float-particle ${p.dur} ease-in-out ${p.delay} infinite`,
+                }}
+              />
+            ))}
           </div>
 
-          <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px" }}>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(12, 1fr)",
-                gap: 24,
-                alignItems: "center",
-              }}
-            >
-              <div style={{ gridColumn: "span 12" }} className="md:col-span-8">
-                <div
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 8,
-                    padding: "6px 14px 6px 10px",
-                    background: "rgba(78,222,163,.06)",
-                    border: "1px solid rgba(78,222,163,.2)",
-                    borderRadius: 99,
-                    marginBottom: 28,
-                  }}
-                >
-                  <span
-                    className="pulse-dot"
-                    style={{
-                      display: "inline-block",
-                      width: 7,
-                      height: 7,
-                      borderRadius: "50%",
-                      background: COLORS.tertiary,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: "'JetBrains Mono',monospace",
-                      fontSize: 11,
-                      letterSpacing: ".08em",
-                      color: COLORS.tertiary,
-                    }}
-                  >
-                    SENIOR AI/ML Engineer
-                  </span>
-                </div>
-
-                <h1
-                  style={{
-                    fontFamily: "'Inter',sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: "-0.02em",
-                    lineHeight: 1.1,
-                    color: COLORS.onSurface,
-                    marginBottom: 32,
-                    fontSize: "clamp(36px, 6vw, 64px)",
-                  }}
-                >
-                  Building Enterprise{" "}
-                  <span className="gradient-text">AI Systems</span> That Scale.
-                </h1>
-
-                <p
-                  style={{
-                    fontFamily: "'Inter',sans-serif",
-                    fontSize: 18,
-                    lineHeight: 1.6,
-                    color: COLORS.onSurfaceVariant,
-                    maxWidth: 640,
-                    marginBottom: 40,
-                  }}
-                >
-                  Senior AI/ML Engineer with 8+ years of experience designing
-                  machine learning platforms, RAG applications, and agentic AI
-                  systems across network infrastructure, healthcare, and
-                  financial services.
-                </p>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
-                  <button
-                    style={{
-                      background: COLORS.secondary,
-                      color: COLORS.onPrimaryFixed,
-                      fontWeight: 700,
-                      padding: "14px 32px",
-                      borderRadius: 4,
-                      border: "none",
-                      fontSize: 16,
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      cursor: "none",
-                      transition: "opacity .2s",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = ".9")}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                  >
-                    Explore Systems <IconArrowRight />
-                  </button>
-                  <button
-                    style={{
-                      background: "transparent",
-                      color: COLORS.onSurface,
-                      fontFamily: "'JetBrains Mono',monospace",
-                      fontWeight: 500,
-                      fontSize: 14,
-                      letterSpacing: ".05em",
-                      padding: "14px 32px",
-                      borderRadius: 4,
-                      border: "1px solid rgba(148,163,184,.2)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 8,
-                      cursor: "none",
-                      transition: "border-color .3s",
-                    }}
-                    onMouseEnter={(e) =>
-                      (e.currentTarget.style.borderColor = COLORS.secondary)
-                    }
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.borderColor =
-                        "rgba(148,163,184,.2)")
-                    }
-                  >
-                    View Tech Stack <IconTerminal />
-                  </button>
-                </div>
-              </div>
-
-              {/* Hero right – AI ID Card portrait */}
+          <div
+            style={{
+              maxWidth: 1400,
+              margin: "0 auto",
+              padding: "0 24px",
+              width: "100%",
+              position: "relative",
+              zIndex: 1,
+              display: "flex",
+            }}
+            className="flex-col md:flex-row gap-10 md:gap-16 items-start md:items-center"
+          >
+            {/* LEFT – text */}
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div
-                className="hidden md:flex"
                 style={{
-                  gridColumn: "span 4",
-                  position: "relative",
-                  justifyContent: "center",
+                  display: "inline-flex",
                   alignItems: "center",
-                  height: 500,
+                  gap: 8,
+                  padding: "6px 14px 6px 10px",
+                  background: "rgba(78,222,163,.06)",
+                  border: "1px solid rgba(78,222,163,.2)",
+                  borderRadius: 99,
+                  marginBottom: 28,
                 }}
               >
-                {/* Ambient glow backdrop */}
+                <span
+                  className="pulse-dot"
+                  style={{
+                    display: "inline-block",
+                    width: 7,
+                    height: 7,
+                    borderRadius: "50%",
+                    background: COLORS.tertiary,
+                    flexShrink: 0,
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: "'JetBrains Mono',monospace",
+                    fontSize: 11,
+                    letterSpacing: ".08em",
+                    color: COLORS.tertiary,
+                  }}
+                >
+                  SENIOR AI/ML Engineer
+                </span>
+              </div>
+
+              <h1
+                style={{
+                  fontFamily: "'Inter',sans-serif",
+                  fontWeight: 700,
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
+                  color: COLORS.onSurface,
+                  marginBottom: 32,
+                  fontSize: "clamp(36px, 6vw, 64px)",
+                }}
+              >
+                <TextScramble
+                  text="Building Enterprise AI Systems That Scale."
+                  finalRender={
+                    <>
+                      Building Enterprise{" "}
+                      <span className="gradient-text">AI Systems</span> That
+                      Scale.
+                    </>
+                  }
+                />
+              </h1>
+
+              <p
+                style={{
+                  fontFamily: "'Inter',sans-serif",
+                  fontSize: 18,
+                  lineHeight: 1.6,
+                  color: COLORS.onSurfaceVariant,
+                  maxWidth: 560,
+                  marginBottom: 40,
+                }}
+              >
+                Senior AI/ML Engineer with 8+ years of experience designing
+                machine learning platforms, RAG applications, and agentic AI
+                systems across network infrastructure, healthcare, and financial
+                services.
+              </p>
+
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+                <button
+                  style={{
+                    background: COLORS.secondary,
+                    color: COLORS.onPrimaryFixed,
+                    fontWeight: 700,
+                    padding: "14px 32px",
+                    borderRadius: 4,
+                    border: "none",
+                    fontSize: 16,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    cursor: "none",
+                    transition: "opacity .2s",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = ".9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  Explore Systems <IconArrowRight />
+                </button>
+                <button
+                  style={{
+                    background: "transparent",
+                    color: COLORS.onSurface,
+                    fontFamily: "'JetBrains Mono',monospace",
+                    fontWeight: 500,
+                    fontSize: 14,
+                    letterSpacing: ".05em",
+                    padding: "14px 32px",
+                    borderRadius: 4,
+                    border: "1px solid rgba(148,163,184,.2)",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    cursor: "none",
+                    transition: "border-color .3s",
+                  }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.borderColor = COLORS.secondary)
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.borderColor = "rgba(148,163,184,.2)")
+                  }
+                >
+                  View Tech Stack <IconTerminal />
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT – AI ID Card */}
+            <div
+              className="w-full md:w-[420px]"
+              style={{
+                flexShrink: 0,
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: 460,
+              }}
+            >
+              {/* Ambient glow */}
+              <div
+                style={{
+                  position: "absolute",
+                  width: 420,
+                  height: 420,
+                  background:
+                    "radial-gradient(circle, rgba(78,222,163,.12) 0%, transparent 70%)",
+                  borderRadius: "50%",
+                  filter: "blur(56px)",
+                  zIndex: 0,
+                }}
+              />
+
+              {/* Card frame */}
+              <div
+                className="w-[280px] h-[420px] md:w-[320px] md:h-[500px]"
+                style={{ position: "relative", zIndex: 1 }}
+              >
                 <div
                   style={{
                     position: "absolute",
-                    width: 340,
-                    height: 340,
-                    background:
-                      "radial-gradient(circle, rgba(78,222,163,.1) 0%, transparent 70%)",
-                    borderRadius: "50%",
-                    filter: "blur(48px)",
-                    zIndex: 0,
+                    top: 0,
+                    left: 0,
+                    width: 26,
+                    height: 26,
+                    borderTop: `2px solid ${COLORS.tertiary}`,
+                    borderLeft: `2px solid ${COLORS.tertiary}`,
+                    zIndex: 4,
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    width: 26,
+                    height: 26,
+                    borderTop: `2px solid ${COLORS.tertiary}`,
+                    borderRight: `2px solid ${COLORS.tertiary}`,
+                    zIndex: 4,
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    width: 26,
+                    height: 26,
+                    borderBottom: `2px solid ${COLORS.tertiary}`,
+                    borderLeft: `2px solid ${COLORS.tertiary}`,
+                    zIndex: 4,
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    width: 26,
+                    height: 26,
+                    borderBottom: `2px solid ${COLORS.tertiary}`,
+                    borderRight: `2px solid ${COLORS.tertiary}`,
+                    zIndex: 4,
                   }}
                 />
 
-                {/* ID Card frame */}
                 <div
                   style={{
-                    position: "relative",
-                    width: 270,
-                    height: 400,
-                    zIndex: 1,
+                    position: "absolute",
+                    inset: 0,
+                    border: "1px solid rgba(78,222,163,.15)",
+                    borderRadius: 2,
+                    zIndex: 3,
+                    pointerEvents: "none",
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: 2,
+                    overflow: "hidden",
+                    background: "#0a1929",
                   }}
                 >
-                  {/* Corner brackets */}
-                  <div
+                  <Image
+                    src="/profile.jpeg"
+                    alt="Arnold Kumar"
+                    fill
                     style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      width: 22,
-                      height: 22,
-                      borderTop: `2px solid ${COLORS.tertiary}`,
-                      borderLeft: `2px solid ${COLORS.tertiary}`,
-                      zIndex: 4,
+                      objectFit: "cover",
+                      objectPosition: "top center",
                     }}
+                    priority
                   />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      right: 0,
-                      width: 22,
-                      height: 22,
-                      borderTop: `2px solid ${COLORS.tertiary}`,
-                      borderRight: `2px solid ${COLORS.tertiary}`,
-                      zIndex: 4,
-                    }}
-                  />
+
                   <div
                     style={{
                       position: "absolute",
                       bottom: 0,
                       left: 0,
-                      width: 22,
-                      height: 22,
-                      borderBottom: `2px solid ${COLORS.tertiary}`,
-                      borderLeft: `2px solid ${COLORS.tertiary}`,
-                      zIndex: 4,
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: 0,
                       right: 0,
-                      width: 22,
-                      height: 22,
-                      borderBottom: `2px solid ${COLORS.tertiary}`,
-                      borderRight: `2px solid ${COLORS.tertiary}`,
-                      zIndex: 4,
+                      height: "55%",
+                      background:
+                        "linear-gradient(to top, rgba(5,20,36,1) 0%, rgba(5,20,36,.75) 50%, transparent 100%)",
+                      zIndex: 1,
                     }}
                   />
 
-                  {/* Thin outer border */}
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
-                      border: "1px solid rgba(78,222,163,.15)",
-                      borderRadius: 2,
-                      zIndex: 3,
+                      backgroundImage:
+                        "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.04) 3px, rgba(0,0,0,.04) 4px)",
+                      zIndex: 2,
                       pointerEvents: "none",
                     }}
                   />
 
-                  {/* Image + overlays */}
                   <div
                     style={{
                       position: "absolute",
-                      inset: 0,
-                      borderRadius: 2,
-                      overflow: "hidden",
-                      background: "#0a1929",
+                      top: 12,
+                      left: 12,
+                      right: 12,
+                      zIndex: 3,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 4,
                     }}
                   >
-                    <Image
-                      src="/profile.jpeg"
-                      alt="Arnold Kumar"
-                      fill
+                    <span
                       style={{
-                        objectFit: "cover",
-                        objectPosition: "top center",
-                      }}
-                      priority
-                    />
-
-                    {/* Bottom gradient fade */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        height: "55%",
-                        background:
-                          "linear-gradient(to top, rgba(5,20,36,1) 0%, rgba(5,20,36,.75) 50%, transparent 100%)",
-                        zIndex: 1,
-                      }}
-                    />
-
-                    {/* Subtle scanline texture */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        inset: 0,
-                        backgroundImage:
-                          "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.04) 3px, rgba(0,0,0,.04) 4px)",
-                        zIndex: 2,
-                        pointerEvents: "none",
-                      }}
-                    />
-
-                    {/* Top scan info */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 10,
-                        left: 10,
-                        right: 10,
-                        zIndex: 3,
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 3,
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 9,
+                        letterSpacing: ".1em",
+                        color: COLORS.tertiary,
+                        textShadow: "0 0 10px rgba(78,222,163,.6)",
                       }}
                     >
-                      <span
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 9,
-                          letterSpacing: ".1em",
-                          color: COLORS.tertiary,
-                          textShadow: "0 0 10px rgba(78,222,163,.6)",
-                        }}
-                      >
-                        SCAN_ID: ARNOLD
-                      </span>
-                      <span
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 8,
-                          letterSpacing: ".08em",
-                          color: "rgba(212,228,250,.45)",
-                        }}
-                      >
-                        CLEARANCE: LVL-5 / ACTIVE
-                      </span>
-                    </div>
-
-                    {/* Bottom overlay text */}
-                    <div
+                      SCAN_ID: ARNOLD
+                    </span>
+                    <span
                       style={{
-                        position: "absolute",
-                        bottom: 12,
-                        left: 12,
-                        right: 12,
-                        zIndex: 3,
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 8,
+                        letterSpacing: ".08em",
+                        color: "rgba(212,228,250,.45)",
                       }}
                     >
-                      <div
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 8,
-                          letterSpacing: ".1em",
-                          color: "rgba(212,228,250,.4)",
-                          marginBottom: 3,
-                        }}
-                      >
-                        ROLE
-                      </div>
-                      <div
-                        style={{
-                          fontFamily: "'JetBrains Mono',monospace",
-                          fontSize: 10,
-                          letterSpacing: ".06em",
-                          color: COLORS.secondary,
-                          fontWeight: 500,
-                          marginBottom: 10,
-                        }}
-                      >
-                        SENIOR_AI_ML_ENGINEER
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: 6,
-                        }}
-                      >
-                        <span
-                          className="pulse-dot"
-                          style={{
-                            display: "inline-block",
-                            width: 6,
-                            height: 6,
-                            borderRadius: "50%",
-                            background: COLORS.tertiary,
-                            boxShadow: `0 0 6px ${COLORS.tertiary}`,
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span
-                          style={{
-                            fontFamily: "'JetBrains Mono',monospace",
-                            fontSize: 9,
-                            letterSpacing: ".1em",
-                            color: COLORS.tertiary,
-                          }}
-                        >
-                          STATUS: Building GenAI @ Forward Networks
-                        </span>
-                      </div>
-                    </div>
+                      CLEARANCE: LVL-5 / ACTIVE
+                    </span>
                   </div>
-                </div>
 
-                {/* Floating status badge – overlapping bottom-right of card */}
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 36,
-                    right: 0,
-                    background: "rgba(12,22,40,.97)",
-                    border: "1px solid rgba(93,230,255,.2)",
-                    borderRadius: 6,
-                    padding: "10px 14px",
-                    zIndex: 5,
-                    backdropFilter: "blur(16px)",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 5,
-                    minWidth: 138,
-                    boxShadow: "0 8px 24px rgba(0,0,0,.5)",
-                  }}
-                >
                   <div
                     style={{
-                      fontFamily: "'JetBrains Mono',monospace",
-                      fontSize: 8,
-                      letterSpacing: ".1em",
-                      color: "rgba(198,198,205,.4)",
-                      marginBottom: 2,
-                      borderBottom: "1px solid rgba(93,230,255,.08)",
-                      paddingBottom: 4,
+                      position: "absolute",
+                      bottom: 16,
+                      left: 14,
+                      right: 14,
+                      zIndex: 3,
                     }}
                   >
-                    CURRENT FOCUS
-                  </div>
-                  {[
-                    { label: "RAG", color: COLORS.tertiary },
-                    { label: "Agentic AI", color: COLORS.secondary },
-                    { label: "MLOps", color: COLORS.onSurface },
-                  ].map((item) => (
                     <div
-                      key={item.label}
-                      style={{ display: "flex", alignItems: "center", gap: 7 }}
+                      style={{
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 8,
+                        letterSpacing: ".1em",
+                        color: "rgba(212,228,250,.4)",
+                        marginBottom: 4,
+                      }}
                     >
-                      <div
+                      ROLE
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 10,
+                        letterSpacing: ".06em",
+                        color: COLORS.secondary,
+                        fontWeight: 500,
+                        marginBottom: 12,
+                      }}
+                    >
+                      SENIOR_AI_ML_ENGINEER
+                    </div>
+                    <div
+                      style={{ display: "flex", alignItems: "center", gap: 6 }}
+                    >
+                      <span
+                        className="pulse-dot"
                         style={{
-                          width: 4,
-                          height: 4,
+                          display: "inline-block",
+                          width: 6,
+                          height: 6,
                           borderRadius: "50%",
-                          background: item.color,
-                          boxShadow: `0 0 4px ${item.color}`,
+                          background: COLORS.tertiary,
+                          boxShadow: `0 0 6px ${COLORS.tertiary}`,
                           flexShrink: 0,
                         }}
                       />
@@ -1095,15 +1112,80 @@ export default function Home() {
                         style={{
                           fontFamily: "'JetBrains Mono',monospace",
                           fontSize: 9,
-                          color: item.color,
-                          letterSpacing: ".04em",
+                          letterSpacing: ".1em",
+                          color: COLORS.tertiary,
                         }}
                       >
-                        {item.label}
+                        STATUS: Building GenAI @ Forward Networks
                       </span>
                     </div>
-                  ))}
+                  </div>
                 </div>
+              </div>
+
+              {/* Status badge – desktop only */}
+              <div
+                className="hidden md:flex"
+                style={{
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  background: "rgba(12,22,40,.97)",
+                  border: "1px solid rgba(93,230,255,.2)",
+                  borderRadius: 6,
+                  padding: "10px 14px",
+                  zIndex: 5,
+                  backdropFilter: "blur(16px)",
+                  flexDirection: "column",
+                  gap: 5,
+                  minWidth: 138,
+                  boxShadow: "0 8px 24px rgba(0,0,0,.5)",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'JetBrains Mono',monospace",
+                    fontSize: 8,
+                    letterSpacing: ".1em",
+                    color: "rgba(198,198,205,.4)",
+                    marginBottom: 2,
+                    borderBottom: "1px solid rgba(93,230,255,.08)",
+                    paddingBottom: 4,
+                  }}
+                >
+                  CURRENT FOCUS
+                </div>
+                {[
+                  { label: "RAG", color: COLORS.tertiary },
+                  { label: "Agentic AI", color: COLORS.secondary },
+                  { label: "MLOps", color: COLORS.onSurface },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    style={{ display: "flex", alignItems: "center", gap: 7 }}
+                  >
+                    <div
+                      style={{
+                        width: 4,
+                        height: 4,
+                        borderRadius: "50%",
+                        background: item.color,
+                        boxShadow: `0 0 4px ${item.color}`,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: 9,
+                        color: item.color,
+                        letterSpacing: ".04em",
+                      }}
+                    >
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
