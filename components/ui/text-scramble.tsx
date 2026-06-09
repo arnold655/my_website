@@ -88,7 +88,7 @@ export function TextScramble({
                 key={i}
                 className="inline-block transition-all duration-150"
                 style={{
-                  color: isScrambling && char !== text[i] ? "#4edea3" : "inherit",
+                  color: isScrambling && char !== text[i] ? "#C084FC" : "inherit",
                   transform:
                     isScrambling && char !== text[i] ? "scale(1.1)" : "scale(1)",
                   transitionDelay: `${i * 10}ms`,
@@ -104,13 +104,13 @@ export function TextScramble({
         <span
           className="absolute inset-0 transition-transform duration-500 ease-out origin-left"
           style={{
-            backgroundColor: "#5de6ff",
+            backgroundColor: "#A855F7",
             transform: isHovering ? "scaleX(1)" : "scaleX(0)",
           }}
         />
         <span
           className="absolute inset-0"
-          style={{ backgroundColor: "rgba(93,230,255,.08)" }}
+          style={{ backgroundColor: "rgba(168,85,247,.08)" }}
         />
       </span>
 
@@ -118,7 +118,7 @@ export function TextScramble({
       <span
         className="absolute -inset-4 rounded-lg -z-10 transition-opacity duration-300"
         style={{
-          background: "rgba(78,222,163,.05)",
+          background: "rgba(168,85,247,.05)",
           opacity: isHovering ? 1 : 0,
         }}
       />
